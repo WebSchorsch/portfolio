@@ -11,15 +11,19 @@
 
 .menu {
   position: fixed;
-
-  top: 0;
-  width: 100%;
-  z-index: 1000;
-  /* background: var(--p-subtle, #FFEDF4); */
   display: flex;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 10;
   padding: 2% 0%;
-  gap: 0.5rem;
+}
+
+
+.button-teritary.copy.bold, 
+#scroll-button { 
+  z-index: 100; /* Higher z-index for buttons */
+  position: relative; /* Ensures the buttons are layered above */
 }
 
 .footer {
@@ -240,8 +244,7 @@ a {
 /* Responsive Hero • Part 1: Desktop */
 @media screen and (min-width: 950px) {
   .menu {
-    justify-content: flex-end;
-    padding: 2% 2%;
+    /* padding: 2% 2%; */
   }
 
   .georg-hero {
