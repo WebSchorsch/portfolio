@@ -26,10 +26,7 @@
   pointer-events: auto;
 }
 
-.next-button,
-.prev-button {
-  display: none; /* Initially hide the buttons */
-}
+
 
 
 .footer {
@@ -313,8 +310,8 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  /* min-height: 100vh; */
-  /* max-height: 100%; */
+  min-height: 100vh;
+  max-height: 100%;
   /* min-height: 300px; */
   padding: 5% 5%;
   gap: 1rem;

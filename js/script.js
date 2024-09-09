@@ -169,19 +169,19 @@ function setupNavigationButtons() {
 
     function scrollToNextSection() {
         const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        const currentSection = getCurrentSection(visibleSections);
+        const currentSectionIndex = getCurrentSection(visibleSections);
 
-        if (currentSection !== -1 && currentSection < visibleSections.length - 1) {
-            visibleSections[currentSection + 1].scrollIntoView({ behavior: 'smooth' });
+        if (currentSectionIndex !== -1 && currentSectionIndex < visibleSections.length - 1) {
+            visibleSections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
         }
     }
 
     function scrollToPreviousSection() {
         const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        const currentSection = getCurrentSection(visibleSections);
+        const currentSectionIndex = getCurrentSection(visibleSections);
 
-        if (currentSection > 0) {
-            visibleSections[currentSection - 1].scrollIntoView({ behavior: 'smooth' });
+        if (currentSectionIndex > 0) {
+            visibleSections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth' });
         }
     }
 
@@ -190,6 +190,7 @@ function setupNavigationButtons() {
         let currentSectionIndex = -1;
         visibleSections.forEach((section, index) => {
             const rect = section.getBoundingClientRect();
+            // Check if the section is within the viewport
             if (rect.top >= 0 && rect.top < window.innerHeight) {
                 currentSectionIndex = index;
             }
