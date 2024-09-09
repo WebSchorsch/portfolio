@@ -250,6 +250,15 @@ a {
   /* .menu {
   } */
 
+  .menu {
+  /* flex-direction: row; */
+  align-items: flex-end;
+  padding: 2% 2%;
+  }
+  
+
+
+
   .georg-hero {
     height: 100vh;
     padding: 10% 15%;
@@ -308,7 +317,7 @@ a {
   background-color: var(--white);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   min-height: 100vh;
   max-height: 100%;
