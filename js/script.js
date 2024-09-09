@@ -154,6 +154,8 @@ function setupNavigationButtons() {
     const filterableSections = document.querySelectorAll('.filterDiv');
     const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
+    const heroSection = document.querySelector('.georg-hero');
+    let currentIndex = 0;
 
     // Event listener for forward (next) button
     nextButton.addEventListener('click', function(event) {
@@ -167,34 +169,60 @@ function setupNavigationButtons() {
         scrollToPreviousSection();
     });
 
+    // Helper function to scroll to the next visible section
     function scrollToNextSection() {
         const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        const currentSectionIndex = getCurrentSection(visibleSections);
 
-        if (currentSectionIndex !== -1 && currentSectionIndex < visibleSections.length - 1) {
-            visibleSections[currentSectionIndex + 1].scrollIntoView({ behavior: 'smooth' });
+        // Increment index and check if it's the last section
+        if (currentIndex < visibleSections.length - 1) {
+            currentIndex++;
+            visibleSections[currentIndex].scrollIntoView({ behavior: 'smooth' });
+            nextButton.textContent = 'Vorwärts'; // Reset text to default
+        } else {
+            // Scroll back to top if at the last section
+            currentIndex = 0;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Change button text when reaching the last section
+        if (currentIndex === visibleSections.length - 1) {
+            nextButton.textContent = 'Zum Anfang';
+        } else {
+            nextButton.textContent = 'Vorwärts'; // Ensure button resets when not at the last section
         }
     }
 
+    // Helper function to scroll to the previous visible section
     function scrollToPreviousSection() {
         const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        const currentSectionIndex = getCurrentSection(visibleSections);
 
-        if (currentSectionIndex > 0) {
-            visibleSections[currentSectionIndex - 1].scrollIntoView({ behavior: 'smooth' });
+        // Decrement index and make sure it doesn't go below 0
+        if (currentIndex > 0) {
+            currentIndex--;
+            visibleSections[currentIndex].scrollIntoView({ behavior: 'smooth' });
+        } else {
+            // If it's the first section, scroll to hero section
+            heroSection.scrollIntoView({ behavior: 'smooth' });
+            prevButton.style.display = 'none';  // Hide button when back to the top
         }
     }
 
-    // Helper function to get the currently visible section based on the viewport
-    function getCurrentSection(visibleSections) {
-        let currentSectionIndex = -1;
-        visibleSections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
-            // Check if the section is within the viewport
-            if (rect.top >= 0 && rect.top < window.innerHeight) {
-                currentSectionIndex = index;
-            }
-        });
-        return currentSectionIndex;
+    // Listen for scroll events and reset the forward button text when not at the last section
+    window.addEventListener('scroll', () => {
+        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
+        const lastSection = visibleSections[visibleSections.length - 1];
+
+        // If we're not at the last section, reset the forward button text
+        if (!isElementInView(lastSection)) {
+            nextButton.textContent = 'Vorwärts';
+        }
+    });
+
+    // Helper function to check if an element is in view
+    function isElementInView(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top < window.innerHeight && rect.bottom >= 0
+        );
     }
 }
