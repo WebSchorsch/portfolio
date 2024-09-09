@@ -18,15 +18,19 @@
   height: 100%;
   width: 100%;
   z-index: 10;
-  padding: 5% 0%;
+  padding: 3% 0%;
+  pointer-events: none;
 }
 
-
-.button-teritary.copy.bold, 
-#scroll-button { 
-  z-index: 100; /* Higher z-index for buttons */
-  position: relative; /* Ensures the buttons are layered above */
+.menu a {
+  pointer-events: auto;
 }
+
+.next-button,
+.prev-button {
+  display: none; /* Initially hide the buttons */
+}
+
 
 .footer {
   display: flex;
@@ -246,9 +250,8 @@ a {
 
 /* Responsive Hero • Part 1: Desktop */
 @media screen and (min-width: 950px) {
-  .menu {
-    /* padding: 2% 2%; */
-  }
+  /* .menu {
+  } */
 
   .georg-hero {
     height: 100vh;
@@ -310,8 +313,8 @@ a {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
-  max-height: 100%;
+  /* min-height: 100vh; */
+  /* max-height: 100%; */
   /* min-height: 300px; */
   padding: 5% 5%;
   gap: 1rem;
