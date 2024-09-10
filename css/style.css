@@ -183,9 +183,14 @@ a {
 
 .welcome-content-bottom {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: var(--H-s-padding);
-  align-self: center;
+  /* align-self: center; */
+}
+
+#project-counter {
+  text-align: right;
 }
 
 /* Responsive Hero • Part 1: Tablet */
