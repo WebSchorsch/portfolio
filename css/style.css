@@ -459,24 +459,26 @@ a {
 /* Arrows */
 .custom-prev-button,
 .custom-next-button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    z-index: 10;
-    color: var(--p-default);
+  font-size: 1rem; /* Ensure the text size matches <p> elements */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--p-default);
+  padding: 0 1rem;
 }
 
+/* Position left and right buttons */
 .custom-prev-button {
-    left: 10px;
+  margin-right: 1rem; /* Adjust spacing as needed */
 }
 
 .custom-next-button {
-    right: 10px;
+  margin-left: 1rem;
 }
+
 
 .custom-prev-button:hover,
 .custom-next-button:hover {
@@ -485,22 +487,23 @@ a {
 
 /* Pagination */
 .custom-pagination {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 10px;
+  position: relative;
 }
 
+/* Pagination dots */
 .custom-pagination-dot {
-    width: 10px;
-    height: 10px;
-    background-color: var(--Border-Lighter);
-    border-radius: 50%;
-    cursor: pointer;
-    opacity: 0.5;
-    transition: opacity 0.3s ease;
+  width: 10px;
+  height: 10px;
+  background-color: var(--p-default);
+  border-radius: 50%;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
 }
 
 .custom-pagination-dot.active {
