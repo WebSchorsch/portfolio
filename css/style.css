@@ -26,9 +26,6 @@
   pointer-events: auto;
 }
 
-
-
-
 .footer {
   display: flex;
   padding: 1% 10%;
@@ -37,7 +34,7 @@
 
 .georg-hero {
   /* position: relative; */
-  /* height: 100vh; */
+  height: 100vh;
   /* background: var(--p-subtle, #FFEDF4); */
   background: var(--p-verysubtle, #fff5f9);
 
@@ -57,10 +54,10 @@
   display: none;
 }
 
-span,
+/* span,
 .regular {
   font-style: normal;
-}
+} */
 
 a {
   text-decoration: none;
@@ -80,8 +77,8 @@ a {
 }
 
 .avatare {
-  /* max-height: auto; */
-  max-width: 60%;
+  max-height: auto;
+  max-width: 50%;
   align-self: center;
   /* transition: opacity 0.1s ease-in-out; */
 }
@@ -685,19 +682,21 @@ a {
 
   .project-title-content {
     gap: 1rem;
+    max-width: 500px;
   }
 
   .project {
-    display: grid;
-    grid-template-columns: 2fr 3fr;
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    padding: 5% 10%;
+    justify-content: center;
+    padding: 2% 10% 0% 10%;
     text-align: left;
   }
 
   .project > img {
     min-width: 400px;
-    max-width: 100%;
+    max-width: 700px;
     height: auto;
     /* order: 3; */
     /* align-self: center; */
@@ -713,6 +712,18 @@ a {
 
   .left > .project-title-content {
     order: 1;
+  }
+
+  .panorama{
+    display: flex;
+    max-width: 100%;
+    justify-content: center;
+    padding: 0% 10% 2% 10%;
+
+  }
+
+  .panorama > img {
+  max-width: 70%;
   }
 }
 
