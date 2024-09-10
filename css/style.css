@@ -497,19 +497,20 @@ a {
 
 /* Pagination dots */
 .custom-pagination-dot {
-  width: 10px;
-  height: 10px;
-  background-color: var(--p-default);
+  height: 0.5rem;
+  width: 0.5rem;
+  margin: 0 0.125rem;
+  background-color: var(--Border-Lighter);
   border-radius: 50%;
+  display: inline-block;
   cursor: pointer;
-  opacity: 0.5;
-  transition: opacity 0.3s ease;
 }
 
 .custom-pagination-dot.active {
-    background-color: var(--Border-Default);
-    opacity: 1;
+  background-color: var(--Border-Default);
+  opacity: 1;
 }
+
 
 
 /* Responsive Section Tablet */
