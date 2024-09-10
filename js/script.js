@@ -264,6 +264,7 @@ function setupCustomSlider() {
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID = 0;
+    const slideWidth = slides[0].offsetWidth;
 
     function setActiveSlide(index) {
         currentSlide = index;
@@ -272,9 +273,9 @@ function setupCustomSlider() {
     }
 
     function updateSlidePosition() {
-        const slideWidth = slides[0].offsetWidth;
         currentTranslate = -currentSlide * slideWidth;
         slides.forEach(slide => {
+            slide.style.transition = 'transform 0.8s ease-in-out'; // Smooth transition
             slide.style.transform = `translateX(${currentTranslate}px)`;
         });
     }
@@ -345,6 +346,7 @@ function setupCustomSlider() {
         }
 
         setActiveSlide(currentSlide);
+        prevTranslate = currentTranslate; // Save the current position for the next swipe
     }
 
     function animation() {
@@ -354,7 +356,13 @@ function setupCustomSlider() {
         if (isDragging) requestAnimationFrame(animation);
     }
 
-    window.addEventListener('resize', updateSlidePosition);
+    window.addEventListener('resize', () => {
+        slideWidth = slides[0].offsetWidth;
+        updateSlidePosition();
+    });
 
     updateSlidePosition(); // Initialize slider position
 }
+
+// Initialize the slider after DOM content is loaded
+document.addEventListener('DOMContentLoaded', setupCustomSlider);

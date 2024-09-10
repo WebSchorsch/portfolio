@@ -441,14 +441,15 @@ a {
 }
 
 .custom-slider-wrapper {
-    display: flex;
-    transition: transform 0.4s ease;
-    will-change: transform;
+  display: flex;
+  transition: transform 0.8s ease-in-out; /* Increase duration for a smoother effect */
+  will-change: transform;
 }
 
 .custom-slide {
-    min-width: 100%;
-    box-sizing: border-box;
+  min-width: 100%;
+  box-sizing: border-box;
+  transition: opacity 0.8s ease-in-out; /* Smooth fading effect */
 }
 
 .custom-slide img {
