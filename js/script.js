@@ -25,40 +25,92 @@ document.addEventListener('DOMContentLoaded', function() {
 // Function to setup the default carousel
 function setupCarousel(carouselContainer) {
     let currentSlide = 0;
-    const slides = carouselContainer.querySelectorAll('.carousel-item');
-    const dots = carouselContainer.querySelectorAll('.dot');
-    const carousel = carouselContainer.querySelector('.carousel');
-    const prevArrow = carouselContainer.querySelector('.prev-arrow');
-    const nextArrow = carouselContainer.querySelector('.next-arrow');
+const slides = carouselContainer.querySelectorAll('.carousel-item');
+const dots = carouselContainer.querySelectorAll('.dot');
+const carousel = carouselContainer.querySelector('.carousel');
+const prevArrow = carouselContainer.querySelector('.prev-arrow');
+const nextArrow = carouselContainer.querySelector('.next-arrow');
 
-    function showSlide(index) {
-        if (index >= slides.length) {
-            currentSlide = 0;
-        } else if (index < 0) {
-            currentSlide = slides.length - 1;
-        } else {
-            currentSlide = index;
-        }
+let isDragging = false;
+let startPos = 0;
+let currentTranslate = 0;
+let prevTranslate = 0;
+let animationID = 0;
+const slideWidth = slides[0].offsetWidth;
 
-        // Move carousel
-        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-        // Update dots
-        dots.forEach(dot => {
-            dot.classList.remove('active');
-            if (parseInt(dot.getAttribute('data-slide')) === currentSlide) {
-                dot.classList.add('active');
-            }
-        });
+function showSlide(index) {
+    if (index >= slides.length) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = slides.length - 1;
+    } else {
+        currentSlide = index;
     }
 
-    prevArrow.addEventListener('click', () => showSlide(currentSlide - 1));
-    nextArrow.addEventListener('click', () => showSlide(currentSlide + 1));
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => showSlide(parseInt(dot.getAttribute('data-slide'))));
-    });
+    // Move carousel
+    carousel.style.transition = 'transform 0.5s ease';
+    carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-    showSlide(currentSlide);  // Initialize the first slide
+    // Update dots
+    dots.forEach(dot => {
+        dot.classList.remove('active');
+        if (parseInt(dot.getAttribute('data-slide')) === currentSlide) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+// Arrow functionality
+prevArrow.addEventListener('click', () => showSlide(currentSlide - 1));
+nextArrow.addEventListener('click', () => showSlide(currentSlide + 1));
+
+// Dot navigation functionality
+dots.forEach(dot => {
+    dot.addEventListener('click', () => showSlide(parseInt(dot.getAttribute('data-slide'))));
+});
+
+// Touch events for swipe functionality
+carousel.addEventListener('touchstart', touchStart);
+carousel.addEventListener('touchend', touchEnd);
+carousel.addEventListener('touchmove', touchMove);
+
+function touchStart(event) {
+    startPos = event.touches[0].clientX;
+    isDragging = true;
+    prevTranslate = currentTranslate;
+    animationID = requestAnimationFrame(animation);
+}
+
+function touchMove(event) {
+    if (isDragging) {
+        const currentPosition = event.touches[0].clientX;
+        const distanceMoved = currentPosition - startPos;
+        currentTranslate = prevTranslate + distanceMoved;
+    }
+}
+
+function touchEnd() {
+    isDragging = false;
+    cancelAnimationFrame(animationID);
+    const movedBy = currentTranslate - prevTranslate;
+
+    // If swipe moved enough, change slides
+    if (movedBy < -50 && currentSlide < slides.length - 1) {
+        showSlide(currentSlide + 1);
+    } else if (movedBy > 50 && currentSlide > 0) {
+        showSlide(currentSlide - 1);
+    } else {
+        showSlide(currentSlide);
+    }
+}
+
+function animation() {
+    carousel.style.transform = `translateX(${currentTranslate}px)`;
+    if (isDragging) requestAnimationFrame(animation);
+}
+
+// Initialize the first slide
+showSlide(currentSlide);
 }
 
 // Function to handle avatar image change
