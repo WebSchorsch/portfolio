@@ -18,6 +18,7 @@ function setupCarousel(carouselContainer) {
     const carousel = carouselContainer.querySelector('.carousel');
     const prevArrow = carouselContainer.querySelector('.prev-arrow');
     const nextArrow = carouselContainer.querySelector('.next-arrow');
+    const buttons = document.querySelectorAll('.button-primary, .button-secondary, .button-teritary');
 
     let startX = 0;
     let currentX = 0;
@@ -276,4 +277,15 @@ function setupNavigationButtons() {
             rect.top < window.innerHeight && rect.bottom >= 0
         );
     }
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Add a short delay to reset hover after click, giving the user a "pressed" feeling
+            setTimeout(() => {
+                this.blur();  // Remove focus from the button
+            }, 200); // Delay in milliseconds (adjust if needed)
+        });
+    });
+
+
 }
