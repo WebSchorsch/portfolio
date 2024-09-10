@@ -1020,6 +1020,8 @@ p {
 
     box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 2px 4px 0px rgba(73, 61, 66, 0.04);
 
+    transition: background-color 0.2s ease, color 0.2s ease;
+
   }
   
   .button-teritary:hover {
@@ -1034,7 +1036,7 @@ p {
   }
 
   .button-teritary:active {
-    background-color: #781D3F);
+    background-color: var(--Greyscale-Text-Disabled, #9A888F);
     border: 1px solid var(--Greyscale-Border-Darker, #746168);
   }
 
