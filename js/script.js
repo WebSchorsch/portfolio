@@ -3,19 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const carousels = document.querySelectorAll('.carousel-container');
     carousels.forEach(carousel => setupCarousel(carousel));
 
-    // Initialize avatar change functionality
+    // Initialize other functionalities
     setupAvatarChange();
-
-    // Initialize filter functionality
     setupFilter();
-
-    // Initialize scroll button functionality
     setupScrollButton();
-
-    // Track scroll for navigation buttons visibility
     setupScrollForNavButtons();
-
-    // Setup navigation button functionality (Next/Prev)
     setupNavigationButtons();
 });
 
@@ -27,9 +19,9 @@ function setupCarousel(carouselContainer) {
     const prevArrow = carouselContainer.querySelector('.prev-arrow');
     const nextArrow = carouselContainer.querySelector('.next-arrow');
 
-    // Variables for touch functionality
     let startX = 0;
-    let endX = 0;
+    let currentX = 0;
+    let isDragging = false;
 
     function showSlide(index) {
         if (index >= slides.length) {
@@ -40,7 +32,8 @@ function setupCarousel(carouselContainer) {
             currentSlide = index;
         }
 
-        // Move carousel
+        // Move carousel smoothly
+        carousel.style.transition = 'transform 0.5s ease-in-out';
         carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
         // Update dots
@@ -52,38 +45,52 @@ function setupCarousel(carouselContainer) {
         });
     }
 
+    // Drag Start (Touch Start)
+    carousel.addEventListener('touchstart', function(event) {
+        isDragging = true;
+        startX = event.touches[0].clientX;
+        carousel.style.transition = 'none'; // Disable transition while dragging
+    });
+
+    // Drag Move (Touch Move)
+    carousel.addEventListener('touchmove', function(event) {
+        if (!isDragging) return;
+        currentX = event.touches[0].clientX - startX;
+
+        // Move the carousel based on drag
+        const percentageMoved = (currentX / carouselContainer.offsetWidth) * 100;
+        carousel.style.transform = `translateX(calc(-${currentSlide * 100}% + ${percentageMoved}%))`;
+    });
+
+    // Drag End (Touch End)
+    carousel.addEventListener('touchend', function() {
+        isDragging = false;
+
+        // Determine if swipe is significant enough to change slides
+        if (currentX < -50) {
+            // Swipe left
+            showSlide(currentSlide + 1);
+        } else if (currentX > 50) {
+            // Swipe right
+            showSlide(currentSlide - 1);
+        } else {
+            // Snap back to current slide
+            showSlide(currentSlide);
+        }
+        currentX = 0; // Reset drag distance
+    });
+
+    // Arrow buttons navigation
     prevArrow.addEventListener('click', () => showSlide(currentSlide - 1));
     nextArrow.addEventListener('click', () => showSlide(currentSlide + 1));
+
+    // Dots navigation
     dots.forEach(dot => {
         dot.addEventListener('click', () => showSlide(parseInt(dot.getAttribute('data-slide'))));
     });
 
     showSlide(currentSlide);  // Initialize the first slide
-
-    // Touch functionality
-    carousel.addEventListener('touchstart', handleTouchStart);
-    carousel.addEventListener('touchmove', handleTouchMove);
-    carousel.addEventListener('touchend', handleTouchEnd);
-
-    function handleTouchStart(event) {
-        startX = event.touches[0].clientX;
-    }
-
-    function handleTouchMove(event) {
-        endX = event.touches[0].clientX;
-    }
-
-    function handleTouchEnd() {
-        if (startX > endX) {
-            // Swiped left
-            showSlide(currentSlide + 1);
-        } else if (startX < endX) {
-            // Swiped right
-            showSlide(currentSlide - 1);
-        }
-    }
 }
-
 
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
