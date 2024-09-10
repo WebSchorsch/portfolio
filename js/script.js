@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Initialize carousels
     const carousels = document.querySelectorAll('.carousel-container');
     carousels.forEach(carousel => setupCarousel(carousel));
@@ -17,104 +17,48 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Setup navigation button functionality
     setupNavigationButtons();
+    
+    // Initialize the custom slider functionality
+    setupCustomSlider();
 });
 
 function setupCarousel(carouselContainer) {
     let currentSlide = 0;
     const slides = carouselContainer.querySelectorAll('.carousel-item');
+    const dots = carouselContainer.querySelectorAll('.dot');
     const carousel = carouselContainer.querySelector('.carousel');
     const prevArrow = carouselContainer.querySelector('.prev-arrow');
     const nextArrow = carouselContainer.querySelector('.next-arrow');
-    const totalSlides = slides.length;
 
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    let translateX = 0;
-
-    // Move to a specific slide
-    function moveToSlide(index) {
-        currentSlide = index;
-        translateX = -currentSlide * 100;
-        carousel.style.transition = 'transform 0.4s ease'; // Smooth transition
-        carousel.style.transform = `translateX(${translateX}%)`;
-    }
-
-    // Handle swipe start
-    function touchStart(event) {
-        isDragging = true;
-        startX = event.touches[0].clientX;
-        carousel.style.transition = 'none'; // Disable transition for immediate drag
-    }
-
-    // Handle swipe move
-    function touchMove(event) {
-        if (!isDragging) return;
-        const touchX = event.touches[0].clientX;
-        currentX = touchX - startX;
-
-        // Update the carousel position based on swipe movement
-        const percentageMove = (currentX / carouselContainer.offsetWidth) * 100;
-        carousel.style.transform = `translateX(calc(${translateX}% + ${percentageMove}%))`;
-    }
-
-    // Handle swipe end
-    function touchEnd() {
-        if (!isDragging) return;
-        isDragging = false;
-
-        // Determine if the swipe distance is significant to move to the next or previous slide
-        if (currentX < -50) {
-            moveToSlide(Math.min(currentSlide + 1, totalSlides - 1)); // Swipe left
-        } else if (currentX > 50) {
-            moveToSlide(Math.max(currentSlide - 1, 0)); // Swipe right
+    function showSlide(index) {
+        if (index >= slides.length) {
+            currentSlide = 0;
+        } else if (index < 0) {
+            currentSlide = slides.length - 1;
         } else {
-            moveToSlide(currentSlide); // Stay on current slide
+            currentSlide = index;
         }
 
-        currentX = 0; // Reset swipe distance
+        // Move carousel
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Update dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+            if (parseInt(dot.getAttribute('data-slide')) === currentSlide) {
+                dot.classList.add('active');
+            }
+        });
     }
 
-    // Initialize the first slide
-    moveToSlide(currentSlide);
+    prevArrow.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextArrow.addEventListener('click', () => showSlide(currentSlide + 1));
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => showSlide(parseInt(dot.getAttribute('data-slide'))));
+    });
 
-    // Add touch event listeners
-    carousel.addEventListener('touchstart', touchStart);
-    carousel.addEventListener('touchmove', touchMove);
-    carousel.addEventListener('touchend', touchEnd);
-
-    // Arrow buttons navigation
-    prevArrow.addEventListener('click', () => moveToSlide(Math.max(currentSlide - 1, 0)));
-    nextArrow.addEventListener('click', () => moveToSlide(Math.min(currentSlide + 1, totalSlides - 1)));
+    showSlide(currentSlide);  // Initialize the first slide
 }
-
-
-const swiper = new Swiper('.swiper-container', {
-    // Optional parameters
-    direction: 'horizontal',
-    loop: true,
-    speed: 400,
-
-    // Enable pagination (dots)
-    pagination: {
-       el: '.swiper-pagination',
-       clickable: true,
-    },
-
-    // Navigation arrows
-    navigation: {
-       nextEl: '.swiper-button-next',
-       prevEl: '.swiper-button-prev',
-    },
-
-    // Enable touch gestures
-    grabCursor: true,
-
-    // Enable auto-height (if slides have different heights)
-    autoHeight: true,
- });
-
-
 
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
@@ -300,4 +244,86 @@ function setupNavigationButtons() {
             rect.top < window.innerHeight && rect.bottom >= 0
         );
     }
+}
+
+function setupCustomSlider() {
+    const sliderWrapper = document.querySelector('.custom-slider-wrapper');
+    const slides = document.querySelectorAll('.custom-slide');
+    const prevButton = document.querySelector('.custom-prev-button');
+    const nextButton = document.querySelector('.custom-next-button');
+    const paginationContainer = document.querySelector('.custom-pagination');
+
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+
+    // Create pagination dots
+    for (let i = 0; i < totalSlides; i++) {
+        const dot = document.createElement('div');
+        dot.classList.add('custom-pagination-dot');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goToSlide(i));
+        paginationContainer.appendChild(dot);
+    }
+
+    const paginationDots = document.querySelectorAll('.custom-pagination-dot');
+
+    // Function to go to a specific slide
+    function goToSlide(slideIndex) {
+        currentSlide = slideIndex;
+        updateSlider();
+    }
+
+    // Update slider position and pagination dots
+    function updateSlider() {
+        sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
+        paginationDots.forEach(dot => dot.classList.remove('active'));
+        paginationDots[currentSlide].classList.add('active');
+    }
+
+    // Next slide
+    nextButton.addEventListener('click', () => {
+        if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+        } else {
+            currentSlide = 0; // Loop back to the first slide
+        }
+        updateSlider();
+    });
+
+    // Previous slide
+    prevButton.addEventListener('click', () => {
+        if (currentSlide > 0) {
+            currentSlide--;
+        } else {
+            currentSlide = totalSlides - 1; // Loop back to the last slide
+        }
+        updateSlider();
+    });
+
+    // Add touch support for mobile devices
+    let startX = 0;
+    let isDragging = false;
+
+    sliderWrapper.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        isDragging = true;
+    });
+
+    sliderWrapper.addEventListener('touchmove', (e) => {
+        if (isDragging) {
+            const currentX = e.touches[0].clientX;
+            const moveX = startX - currentX;
+            if (moveX > 50) {
+                nextButton.click();
+                isDragging = false;
+            } else if (moveX < -50) {
+                prevButton.click();
+                isDragging = false;
+            }
+        }
+    });
+
+    sliderWrapper.addEventListener('touchend', () => {
+        isDragging = false;
+    });
 }
