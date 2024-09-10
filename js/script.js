@@ -327,7 +327,7 @@ function setupCustomSlider() {
     function updateSlidePosition() {
         currentTranslate = -currentSlide * slideWidth;
         slides.forEach(slide => {
-            slide.style.transition = 'transform 0.8s ease-in-out'; // Smooth transition
+            slide.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
             slide.style.transform = `translateX(${currentTranslate}px)`;
         });
     }
