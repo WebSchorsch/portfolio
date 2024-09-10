@@ -431,8 +431,6 @@ a {
   .dot.active {
     background-color: var(--Border-Default);
   }
-  
-  /* Carousel V2 */
 
   .custom-slider-container {
     position: relative;
@@ -509,7 +507,6 @@ a {
     background-color: var(--Border-Default);
     opacity: 1;
 }
-
 
 
 /* Responsive Section Tablet */

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     // Initialize carousels
     const carousels = document.querySelectorAll('.carousel-container');
     carousels.forEach(carousel => setupCarousel(carousel));
@@ -17,11 +17,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Setup navigation button functionality
     setupNavigationButtons();
-    
-    // Initialize the custom slider functionality
+
+    // Setup custom touch-enabled slider
     setupCustomSlider();
 });
 
+// Function to setup the default carousel
 function setupCarousel(carouselContainer) {
     let currentSlide = 0;
     const slides = carouselContainer.querySelectorAll('.carousel-item');
@@ -60,6 +61,7 @@ function setupCarousel(carouselContainer) {
     showSlide(currentSlide);  // Initialize the first slide
 }
 
+// Function to handle avatar image change
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
     const avatarImage = document.querySelector('.avatare');
@@ -77,6 +79,7 @@ function setupAvatarChange() {
     avatarImage.src = defaultRadio.value;
 }
 
+// Function to filter projects based on selected category
 function setupFilter() {
     const filterControls = document.querySelectorAll('.image-selector input[type="radio"]');
     const filterableSections = document.querySelectorAll('.filterDiv');
@@ -112,6 +115,7 @@ function setupFilter() {
     applyFilter('all');  // Set default filter on load
 }
 
+// Function to scroll to the first visible project section
 function setupScrollButton() {
     const scrollButton = document.getElementById('scroll-button');
     const filterableSections = document.querySelectorAll('.filterDiv');
@@ -129,6 +133,7 @@ function setupScrollButton() {
     });
 }
 
+// Function to handle the visibility of navigation buttons when scrolling
 function setupScrollForNavButtons() {
     const heroSection = document.querySelector('.georg-hero');
     const prevButton = document.querySelector('.prev-button');
@@ -153,6 +158,7 @@ function setupScrollForNavButtons() {
     });
 }
 
+// Function to handle navigation between sections
 function setupNavigationButtons() {
     const filterableSections = document.querySelectorAll('.filterDiv');
     const prevButton = document.querySelector('.prev-button');
@@ -246,84 +252,109 @@ function setupNavigationButtons() {
     }
 }
 
+// Function to setup the custom touch-enabled slider
 function setupCustomSlider() {
-    const sliderWrapper = document.querySelector('.custom-slider-wrapper');
     const slides = document.querySelectorAll('.custom-slide');
     const prevButton = document.querySelector('.custom-prev-button');
     const nextButton = document.querySelector('.custom-next-button');
-    const paginationContainer = document.querySelector('.custom-pagination');
-
+    const dots = document.querySelectorAll('.custom-pagination-dot');
     let currentSlide = 0;
-    const totalSlides = slides.length;
+    let isDragging = false;
+    let startPos = 0;
+    let currentTranslate = 0;
+    let prevTranslate = 0;
+    let animationID = 0;
 
-    // Create pagination dots
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.classList.add('custom-pagination-dot');
-        if (i === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => goToSlide(i));
-        paginationContainer.appendChild(dot);
+    function setActiveSlide(index) {
+        currentSlide = index;
+        updateSlidePosition();
+        updateDots();
     }
 
-    const paginationDots = document.querySelectorAll('.custom-pagination-dot');
-
-    // Function to go to a specific slide
-    function goToSlide(slideIndex) {
-        currentSlide = slideIndex;
-        updateSlider();
+    function updateSlidePosition() {
+        const slideWidth = slides[0].offsetWidth;
+        currentTranslate = -currentSlide * slideWidth;
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(${currentTranslate}px)`;
+        });
     }
 
-    // Update slider position and pagination dots
-    function updateSlider() {
-        sliderWrapper.style.transform = `translateX(-${currentSlide * 100}%)`;
-        paginationDots.forEach(dot => dot.classList.remove('active'));
-        paginationDots[currentSlide].classList.add('active');
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentSlide);
+        });
     }
 
-    // Next slide
-    nextButton.addEventListener('click', () => {
-        if (currentSlide < totalSlides - 1) {
-            currentSlide++;
-        } else {
-            currentSlide = 0; // Loop back to the first slide
-        }
-        updateSlider();
-    });
-
-    // Previous slide
     prevButton.addEventListener('click', () => {
         if (currentSlide > 0) {
-            currentSlide--;
+            setActiveSlide(currentSlide - 1);
         } else {
-            currentSlide = totalSlides - 1; // Loop back to the last slide
+            setActiveSlide(slides.length - 1); // Loop to the last slide
         }
-        updateSlider();
     });
 
-    // Add touch support for mobile devices
-    let startX = 0;
-    let isDragging = false;
-
-    sliderWrapper.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-        isDragging = true;
+    nextButton.addEventListener('click', () => {
+        if (currentSlide < slides.length - 1) {
+            setActiveSlide(currentSlide + 1);
+        } else {
+            setActiveSlide(0); // Loop to the first slide
+        }
     });
 
-    sliderWrapper.addEventListener('touchmove', (e) => {
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            setActiveSlide(index);
+        });
+    });
+
+    // Touch events for swiping
+    slides.forEach((slide, index) => {
+        slide.addEventListener('touchstart', touchStart(index));
+        slide.addEventListener('touchend', touchEnd);
+        slide.addEventListener('touchmove', touchMove);
+    });
+
+    function touchStart(index) {
+        return function(event) {
+            currentSlide = index;
+            startPos = event.touches[0].clientX;
+            isDragging = true;
+            animationID = requestAnimationFrame(animation);
+        };
+    }
+
+    function touchMove(event) {
         if (isDragging) {
-            const currentX = e.touches[0].clientX;
-            const moveX = startX - currentX;
-            if (moveX > 50) {
-                nextButton.click();
-                isDragging = false;
-            } else if (moveX < -50) {
-                prevButton.click();
-                isDragging = false;
-            }
+            const currentPosition = event.touches[0].clientX;
+            const distanceMoved = currentPosition - startPos;
+            currentTranslate = prevTranslate + distanceMoved;
         }
-    });
+    }
 
-    sliderWrapper.addEventListener('touchend', () => {
+    function touchEnd() {
         isDragging = false;
-    });
+        cancelAnimationFrame(animationID);
+        const movedBy = currentTranslate - prevTranslate;
+
+        if (movedBy < -50 && currentSlide < slides.length - 1) {
+            currentSlide += 1;
+        }
+
+        if (movedBy > 50 && currentSlide > 0) {
+            currentSlide -= 1;
+        }
+
+        setActiveSlide(currentSlide);
+    }
+
+    function animation() {
+        slides.forEach(slide => {
+            slide.style.transform = `translateX(${currentTranslate}px)`;
+        });
+        if (isDragging) requestAnimationFrame(animation);
+    }
+
+    window.addEventListener('resize', updateSlidePosition);
+
+    updateSlidePosition(); // Initialize slider position
 }
