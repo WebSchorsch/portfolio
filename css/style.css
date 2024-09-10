@@ -1033,6 +1033,11 @@ p {
 
   }
 
+  .button-teritary:active {
+    background-color: #781D3F);
+    border: 1px solid var(--Greyscale-Border-Darker, #746168);
+  }
+
 
 
 
