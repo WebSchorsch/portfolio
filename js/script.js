@@ -155,7 +155,11 @@ function setupNavigationButtons() {
     const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
     const heroSection = document.querySelector('.georg-hero');
+    
     let currentIndex = 0;
+
+    // Update the index dynamically based on current scroll position
+    window.addEventListener('scroll', updateCurrentIndex);
 
     // Event listener for forward (next) button
     nextButton.addEventListener('click', function(event) {
@@ -205,6 +209,18 @@ function setupNavigationButtons() {
             heroSection.scrollIntoView({ behavior: 'smooth' });
             prevButton.style.display = 'none';  // Hide button when back to the top
         }
+    }
+
+    // Function to update current index based on scroll position
+    function updateCurrentIndex() {
+        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
+        
+        visibleSections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
+            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                currentIndex = index;
+            }
+        });
     }
 
     // Listen for scroll events and reset the forward button text when not at the last section

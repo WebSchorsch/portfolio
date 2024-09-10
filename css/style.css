@@ -186,7 +186,7 @@ a {
   justify-content: center;
   align-items: center;
   gap: var(--H-s-padding);
-  /* align-self: center; */
+  align-self: center;
 }
 
 #project-counter {
@@ -773,11 +773,11 @@ p {
   font-family: "jaf-cupidus", sans-serif;
   font-size: 1rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 300;
   line-height: normal;
-  letter-spacing: 0.04rem;
+  letter-spacing: 0.06rem;
   text-transform: uppercase;
-  color: var(--Greyscale-Text-Caption, #c0b5b9);
+  color: var(--g-text, #746168);
 }
 
 .headline {
