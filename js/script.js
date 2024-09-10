@@ -12,10 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize scroll button functionality
     setupScrollButton();
 
-    // Initialize scroll-based visibility for navigation buttons
-    setupScrollForNavButtons();
-
-    // Setup navigation button functionality
+    // Initialize navigation buttons functionality
     setupNavigationButtons();
 });
 
@@ -60,6 +57,7 @@ function setupCarousel(carouselContainer) {
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
     const avatarImage = document.querySelector('.avatare');
+
     radios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
@@ -79,6 +77,26 @@ function setupFilter() {
     const filterableSections = document.querySelectorAll('.filterDiv');
     const projectCounter = document.getElementById('project-counter');
 
+    function applyFilter(filter) {
+        let visibleCount = 0;
+
+        filterableSections.forEach(section => {
+            const sectionClasses = Array.from(section.classList);
+            const isFilterMatch = sectionClasses.includes(filter) || filter === 'all';
+
+            if (isFilterMatch) {
+                section.classList.remove('hidden');  // Show section
+                visibleCount++;
+            } else {
+                section.classList.add('hidden');  // Hide section
+            }
+        });
+
+        projectCounter.textContent = visibleCount; // Update project counter
+    }
+
+    applyFilter('all'); // Set default filter on load
+
     filterControls.forEach(control => {
         control.addEventListener('change', function() {
             if (this.checked) {
@@ -86,27 +104,6 @@ function setupFilter() {
             }
         });
     });
-
-    function applyFilter(filter) {
-        let visibleCount = 0;  // Initialize a counter for visible sections
-
-        filterableSections.forEach(section => {
-            const sectionClasses = Array.from(section.classList);
-            const isFilterMatch = sectionClasses.includes(filter) || filter === 'all';
-
-            if (isFilterMatch) {
-                section.classList.remove('hidden');  // Smoothly show section
-                visibleCount++;  // Increment counter for each visible section
-            } else {
-                section.classList.add('hidden');  // Smoothly hide section
-            }
-        });
-
-        // Update the project counter with the number of visible sections
-        projectCounter.textContent = visibleCount;
-    }
-
-    applyFilter('all');  // Set default filter on load
 }
 
 function setupScrollButton() {
@@ -116,129 +113,72 @@ function setupScrollButton() {
     scrollButton.addEventListener('click', function(event) {
         event.preventDefault();  // Prevent the default anchor click behavior
 
-        // Find the first visible section
+        // Scroll to the first visible section
         for (let section of filterableSections) {
             if (!section.classList.contains('hidden')) {
                 section.scrollIntoView({ behavior: 'smooth' });
-                break;  // Stop after finding the first visible section
+                break;
             }
         }
     });
 }
 
-function setupScrollForNavButtons() {
+// Main section navigation logic with Intersection Observer
+function setupNavigationButtons() {
+    const sections = document.querySelectorAll('.filterDiv');
     const heroSection = document.querySelector('.georg-hero');
-    const prevButton = document.querySelector('.prev-button');
     const nextButton = document.querySelector('.next-button');
+    const prevButton = document.querySelector('.prev-button');
+    let currentIndex = 0;
 
-    // Initially hide the buttons
-    prevButton.style.display = 'none';
-    nextButton.style.display = 'none';
+    const observerOptions = {
+        root: null,
+        threshold: 0.5, // Trigger when 50% of a section is visible
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                currentIndex = Array.from(sections).indexOf(entry.target);
+                updateButtonStates();
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
 
     window.addEventListener('scroll', () => {
         const heroBottom = heroSection.getBoundingClientRect().bottom;
-
         if (window.scrollY > heroBottom) {
-            // Show navigation buttons when scrolling past the hero section
-            prevButton.style.display = 'inline-block';
             nextButton.style.display = 'inline-block';
+            prevButton.style.display = 'inline-block';
         } else {
-            // Hide navigation buttons when back in the hero section
-            prevButton.style.display = 'none';
             nextButton.style.display = 'none';
+            prevButton.style.display = 'none';
         }
     });
-}
 
-function setupNavigationButtons() {
-    const filterableSections = document.querySelectorAll('.filterDiv');
-    const prevButton = document.querySelector('.prev-button');
-    const nextButton = document.querySelector('.next-button');
-    const heroSection = document.querySelector('.georg-hero');
-    
-    let currentIndex = 0;
-
-    // Update the index dynamically based on current scroll position
-    window.addEventListener('scroll', updateCurrentIndex);
-
-    // Event listener for forward (next) button
-    nextButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        scrollToNextSection();
-    });
-
-    // Event listener for backward (prev) button
-    prevButton.addEventListener('click', function(event) {
-        event.preventDefault();
-        scrollToPreviousSection();
-    });
-
-    // Helper function to scroll to the next visible section
-    function scrollToNextSection() {
-        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-
-        // Increment index and check if it's the last section
-        if (currentIndex < visibleSections.length - 1) {
-            currentIndex++;
-            visibleSections[currentIndex].scrollIntoView({ behavior: 'smooth' });
-            nextButton.textContent = 'Vorwärts'; // Reset text to default
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < sections.length - 1) {
+            sections[currentIndex + 1].scrollIntoView({ behavior: 'smooth' });
         } else {
-            // Scroll back to top if at the last section
-            currentIndex = 0;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            heroSection.scrollIntoView({ behavior: 'smooth' });
         }
+    });
 
-        // Change button text when reaching the last section
-        if (currentIndex === visibleSections.length - 1) {
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            sections[currentIndex - 1].scrollIntoView({ behavior: 'smooth' });
+        } else {
+            heroSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    function updateButtonStates() {
+        if (currentIndex === sections.length - 1) {
             nextButton.textContent = 'Zum Anfang';
         } else {
-            nextButton.textContent = 'Vorwärts'; // Ensure button resets when not at the last section
+            nextButton.textContent = 'Weiter';
         }
-    }
-
-    // Helper function to scroll to the previous visible section
-    function scrollToPreviousSection() {
-        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-
-        // Decrement index and make sure it doesn't go below 0
-        if (currentIndex > 0) {
-            currentIndex--;
-            visibleSections[currentIndex].scrollIntoView({ behavior: 'smooth' });
-        } else {
-            // If it's the first section, scroll to hero section
-            heroSection.scrollIntoView({ behavior: 'smooth' });
-            prevButton.style.display = 'none';  // Hide button when back to the top
-        }
-    }
-
-    // Function to update current index based on scroll position
-    function updateCurrentIndex() {
-        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        
-        visibleSections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-                currentIndex = index;
-            }
-        });
-    }
-
-    // Listen for scroll events and reset the forward button text when not at the last section
-    window.addEventListener('scroll', () => {
-        const visibleSections = Array.from(filterableSections).filter(section => !section.classList.contains('hidden'));
-        const lastSection = visibleSections[visibleSections.length - 1];
-
-        // If we're not at the last section, reset the forward button text
-        if (!isElementInView(lastSection)) {
-            nextButton.textContent = 'Vorwärts';
-        }
-    });
-
-    // Helper function to check if an element is in view
-    function isElementInView(element) {
-        const rect = element.getBoundingClientRect();
-        return (
-            rect.top < window.innerHeight && rect.bottom >= 0
-        );
     }
 }
