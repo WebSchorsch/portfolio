@@ -252,23 +252,6 @@ a {
 
 /* Responsive Hero • Part 1: Desktop */
 @media screen and (min-width: 950px) {
-  /* .menu {
-  } */
-
-  .menu {
-  /* flex-direction: row; */
-  align-items: flex-end;
-  padding: 2% 2%;
-  }
-  
-
-
-
-  .georg-hero {
-    height: 100vh;
-    padding: 10% 15%;
-  }
-
   .mobile {
     display: none;
   }
@@ -281,8 +264,26 @@ a {
     display: block;
   }
 
+  .menu {
+    align-items: flex-end;
+    padding: 2% 2%;
+    }
+    
+  
+    .georg-hero {
+      height: 100vh;
+      padding: 0% 5%;
+    }
+
+
   .intro {
-    grid-template-columns: 3fr 2fr;
+    display: flex;
+    flex-direction: row;
+    /* grid-template-columns: 2fr 2fr; */
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
 
   .intro > div {
@@ -290,11 +291,13 @@ a {
     flex-direction: column;
     justify-content: center;
     gap: 2rem;
+    max-width: 750px;
     /* align-items: center; */
   }
 
   .intro > img {
-    width: 350px;
+    max-width: 350px;
+    width: auto;
     /* max-width: 70%; */
   }
 
@@ -777,7 +780,9 @@ p {
   line-height: normal;
   letter-spacing: 0.06rem;
   text-transform: uppercase;
-  color: var(--g-text, #746168);
+  color: var(--Greyscale-Text-Caption, #c0b5b9);
+  /* color: var(--g-text, #746168); */
+
 }
 
 .headline {
