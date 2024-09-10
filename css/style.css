@@ -34,7 +34,7 @@
 
 .georg-hero {
   /* position: relative; */
-  height: 100vh;
+  /* height: 100vh; */
   /* background: var(--p-subtle, #FFEDF4); */
   background: var(--p-verysubtle, #fff5f9);
 
@@ -42,7 +42,7 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  padding: 15% 5%;
+  padding: 20% 5%;
   gap: 2rem;
 }
 
@@ -758,9 +758,9 @@ h3 {
 
 h4 {
   font-family: Change;
-  font-size: 1.5rem;
+  font-size: 1.875rem;
   font-style: italic;
-  font-weight: 400;
+  font-weight: 300;
   line-height: 120%; /* 1.8rem */
   color: var(--p-text, #392040);
 }
