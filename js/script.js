@@ -88,6 +88,34 @@ function setupCarousel(carouselContainer) {
     nextArrow.addEventListener('click', () => moveToSlide(Math.min(currentSlide + 1, totalSlides - 1)));
 }
 
+
+const swiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+    speed: 400,
+
+    // Enable pagination (dots)
+    pagination: {
+       el: '.swiper-pagination',
+       clickable: true,
+    },
+
+    // Navigation arrows
+    navigation: {
+       nextEl: '.swiper-button-next',
+       prevEl: '.swiper-button-prev',
+    },
+
+    // Enable touch gestures
+    grabCursor: true,
+
+    // Enable auto-height (if slides have different heights)
+    autoHeight: true,
+ });
+
+
+
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
     const avatarImage = document.querySelector('.avatare');
