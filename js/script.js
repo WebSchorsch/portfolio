@@ -36,9 +36,8 @@ function setupCarousel(carouselContainer) {
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID = 0;
-    let slideWidth = slides[0].offsetWidth; // Get initial slide width
+    let slideWidth = slides[0].offsetWidth;
 
-    // Function to move to the slide based on index
     function showSlide(index) {
         if (index >= slides.length) {
             currentSlide = slides.length - 1; // Stop at the last slide
@@ -48,31 +47,22 @@ function setupCarousel(carouselContainer) {
             currentSlide = index;
         }
 
-        // Move the carousel
+        // Move carousel
         carousel.style.transition = 'transform 0.5s ease';
-        currentTranslate = -currentSlide * slideWidth; // Update the current translate value
-        carousel.style.transform = `translateX(${currentTranslate}px)`;
+        carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
 
-        // Update the dots
+        // Update dots
         dots.forEach(dot => {
             dot.classList.remove('active');
             if (parseInt(dot.getAttribute('data-slide')) === currentSlide) {
                 dot.classList.add('active');
             }
         });
-
-        // Update previous translate to prevent it from breaking when swiping
-        prevTranslate = currentTranslate;
     }
 
     // Arrow functionality
-    prevArrow.addEventListener('click', () => {
-        if (currentSlide > 0) showSlide(currentSlide - 1); // Go to previous slide
-    });
-
-    nextArrow.addEventListener('click', () => {
-        if (currentSlide < slides.length - 1) showSlide(currentSlide + 1); // Go to next slide
-    });
+    prevArrow.addEventListener('click', () => showSlide(currentSlide - 1));
+    nextArrow.addEventListener('click', () => showSlide(currentSlide + 1));
 
     // Dot navigation functionality
     dots.forEach(dot => {
@@ -87,7 +77,7 @@ function setupCarousel(carouselContainer) {
     function touchStart(event) {
         startPos = event.touches[0].clientX;
         isDragging = true;
-        prevTranslate = currentTranslate; // Store the initial translate value
+        prevTranslate = currentTranslate;
         animationID = requestAnimationFrame(animation);
     }
 
@@ -95,7 +85,7 @@ function setupCarousel(carouselContainer) {
         if (isDragging) {
             const currentPosition = event.touches[0].clientX;
             const distanceMoved = currentPosition - startPos;
-            currentTranslate = prevTranslate + distanceMoved; // Calculate the current translation based on movement
+            currentTranslate = prevTranslate + distanceMoved;
         }
     }
 
@@ -104,14 +94,18 @@ function setupCarousel(carouselContainer) {
         cancelAnimationFrame(animationID);
         const movedBy = currentTranslate - prevTranslate;
 
-        // If swipe distance is enough, go to the next or previous slide
+        // If swipe moved enough, change slides
         if (movedBy < -50 && currentSlide < slides.length - 1) {
             showSlide(currentSlide + 1);
         } else if (movedBy > 50 && currentSlide > 0) {
             showSlide(currentSlide - 1);
         } else {
-            showSlide(currentSlide); // Snap back to the current slide if not enough swipe
+            showSlide(currentSlide);
         }
+
+        // Reset position to prevent glitching on resize
+        currentTranslate = -currentSlide * slideWidth;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
     }
 
     function animation() {
@@ -119,20 +113,17 @@ function setupCarousel(carouselContainer) {
         if (isDragging) requestAnimationFrame(animation);
     }
 
-    // Handle window resizing
+    // Ensure correct slide positioning on resize
     window.addEventListener('resize', () => {
-        slideWidth = slides[0].offsetWidth; // Recalculate slide width
-        showSlide(currentSlide); // Realign the carousel after resizing
+        slideWidth = slides[0].offsetWidth;
+        currentTranslate = -currentSlide * slideWidth;
+        carousel.style.transform = `translateX(${currentTranslate}px)`;
     });
 
     // Initialize the first slide
     showSlide(currentSlide);
 }
 
-// Call the setup function for each carousel container
-document.querySelectorAll('.carousel-container').forEach(carouselContainer => {
-    setupCarousel(carouselContainer);
-});
 
 
 
