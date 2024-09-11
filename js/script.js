@@ -135,6 +135,7 @@ document.querySelectorAll('.carousel-container').forEach(carouselContainer => {
 });
 
 
+
 // Function to handle avatar image change
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
