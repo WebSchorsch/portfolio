@@ -904,7 +904,7 @@ h4 {
   color: var(--Greyscale-Text-Body, #493D42);
 
   /* Headline / Bold */
-  font-family: Cupidus;
+  font-family: "jaf-cupidus-text", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
