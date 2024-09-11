@@ -832,9 +832,12 @@ a {
 
 /* Über Mich */
 
+.uebermich-background {
+  background-color: var(--p-supersubtle);
+  gap: 404px;
+}
 
 .uebermich {
-  background-color: var(--white);
   display: flex;
   flex-direction: column;
   padding: 10% 5%;
@@ -901,14 +904,13 @@ h3 {
 }
 
 h4 {
-  color: var(--Greyscale-Text-Body, #493D42);
-
-  /* Headline / Bold */
   font-family: "jaf-cupidus-text", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
   font-weight: 400;
-  line-height: 120%; /* 1.75rem */}
+  line-height: 120%; /* 1.75rem */
+  color: var(--Greyscale-Text-Body, #493D42);
+}
 
 p {
   font-family: "jaf-cupidus-text", sans-serif;
