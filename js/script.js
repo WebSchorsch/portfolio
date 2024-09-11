@@ -317,16 +317,23 @@ function setupCustomSlider() {
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID = 0;
-    let slideWidth = slides[0].offsetWidth; // Get initial width of the slides
+    let slideWidth = slides[0].offsetWidth;
 
+    // Set the current slide and update the UI accordingly
     function setActiveSlide(index) {
-        currentSlide = index;
+        if (index >= slides.length) {
+            currentSlide = slides.length - 1; // Don't go beyond the last slide
+        } else if (index < 0) {
+            currentSlide = 0; // Don't go beyond the first slide
+        } else {
+            currentSlide = index;
+        }
         updateSlidePosition();
         updateDots();
     }
 
+    // Update the carousel's slide position
     function updateSlidePosition() {
-        slideWidth = slides[0].offsetWidth; // Recalculate slide width after resize
         currentTranslate = -currentSlide * slideWidth;
         slides.forEach(slide => {
             slide.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
@@ -334,43 +341,42 @@ function setupCustomSlider() {
         });
     }
 
+    // Update pagination dots to reflect the active slide
     function updateDots() {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentSlide);
         });
     }
 
+    // Event listeners for previous and next buttons
     prevButton.addEventListener('click', () => {
         if (currentSlide > 0) {
             setActiveSlide(currentSlide - 1);
-        } else {
-            setActiveSlide(slides.length - 1); // Loop to the last slide
         }
     });
 
     nextButton.addEventListener('click', () => {
         if (currentSlide < slides.length - 1) {
             setActiveSlide(currentSlide + 1);
-        } else {
-            setActiveSlide(0); // Loop to the first slide
         }
     });
 
+    // Event listeners for dots
     dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
             setActiveSlide(index);
         });
     });
 
-    // Touch events for swiping
+    // Touch events for swiping on mobile devices
     slides.forEach((slide, index) => {
-        slide.addEventListener('touchstart', touchStart(index));
+        slide.addEventListener('touchstart', touchStart(index), { passive: true });
         slide.addEventListener('touchend', touchEnd);
-        slide.addEventListener('touchmove', touchMove);
+        slide.addEventListener('touchmove', touchMove, { passive: true });
     });
 
     function touchStart(index) {
-        return function(event) {
+        return function (event) {
             currentSlide = index;
             startPos = event.touches[0].clientX;
             isDragging = true;
@@ -392,14 +398,13 @@ function setupCustomSlider() {
         const movedBy = currentTranslate - prevTranslate;
 
         if (movedBy < -50 && currentSlide < slides.length - 1) {
-            currentSlide += 1;
+            setActiveSlide(currentSlide + 1);
+        } else if (movedBy > 50 && currentSlide > 0) {
+            setActiveSlide(currentSlide - 1);
+        } else {
+            updateSlidePosition(); // Snap back if not enough movement
         }
 
-        if (movedBy > 50 && currentSlide > 0) {
-            currentSlide -= 1;
-        }
-
-        setActiveSlide(currentSlide);
         prevTranslate = currentTranslate; // Save the current position for the next swipe
     }
 
@@ -410,16 +415,16 @@ function setupCustomSlider() {
         if (isDragging) requestAnimationFrame(animation);
     }
 
+    // Ensure the carousel resizes properly on window resize
     window.addEventListener('resize', () => {
-        slideWidth = slides[0].offsetWidth; // Recalculate the slide width after resizing
-        updateSlidePosition(); // Ensure the slides are aligned correctly
+        slideWidth = slides[0].offsetWidth; // Recalculate the slide width
+        updateSlidePosition(); // Update the slide position to prevent misalignment
     });
 
-    updateSlidePosition(); // Initialize slider position
+    updateSlidePosition(); // Initialize the slider's position
 }
-
-setupCustomSlider(); // Call the function to set up the slider
-
 
 // Initialize the slider after DOM content is loaded
 document.addEventListener('DOMContentLoaded', setupCustomSlider);
+
+
