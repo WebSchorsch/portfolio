@@ -688,26 +688,6 @@ a {
   gap: 1rem;
 }
 
-.uebermich {
-  background-color: var(--white);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 10% 5%;
-  gap: 2.75rem;
-}
-
-.contact {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-
-.contact span {
-  display: none;
-}
-
 .project > img {
     /* display: flex;
     align-items: center;
@@ -849,6 +829,43 @@ a {
   }
 }
 
+
+/* Über Mich */
+
+
+.uebermich {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: 10% 5%;
+  gap: 2.75rem;
+}
+
+.philosophie {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+}
+
+.contact {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.contact span {
+  display: none;
+}
+
+.vita {
+  display: flex;
+  flex-direction: column;
+  gap: 2.75rem;
+  padding: 10% 5%;
+}
+
+
+
 /* Variables */
 
 h1 {
@@ -919,9 +936,7 @@ p {
 }
 
 .headline {
-  color: var(--Surface-Default, #c7366b);
-
-  /* Headline/Italic */
+  color: var(--p-text);
   font-family: Change;
   font-size: 1.25rem;
   font-weight: 300;
