@@ -60,6 +60,9 @@ function setupCarousel(carouselContainer) {
                 dot.classList.add('active');
             }
         });
+
+        // Update previous translate to prevent it from breaking when swiping
+        prevTranslate = currentTranslate;
     }
 
     // Arrow functionality
@@ -84,7 +87,7 @@ function setupCarousel(carouselContainer) {
     function touchStart(event) {
         startPos = event.touches[0].clientX;
         isDragging = true;
-        prevTranslate = currentTranslate;
+        prevTranslate = currentTranslate; // Store the initial translate value
         animationID = requestAnimationFrame(animation);
     }
 
@@ -92,7 +95,7 @@ function setupCarousel(carouselContainer) {
         if (isDragging) {
             const currentPosition = event.touches[0].clientX;
             const distanceMoved = currentPosition - startPos;
-            currentTranslate = prevTranslate + distanceMoved;
+            currentTranslate = prevTranslate + distanceMoved; // Calculate the current translation based on movement
         }
     }
 
