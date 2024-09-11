@@ -305,6 +305,7 @@ function setupNavigationButtons() {
 }
 
 // Function to setup the custom touch-enabled slider
+// Function to setup the custom touch-enabled slider
 function setupCustomSlider() {
     const slides = document.querySelectorAll('.custom-slide');
     const prevButton = document.querySelector('.custom-prev-button');
@@ -316,7 +317,7 @@ function setupCustomSlider() {
     let currentTranslate = 0;
     let prevTranslate = 0;
     let animationID = 0;
-    const slideWidth = slides[0].offsetWidth;
+    let slideWidth = slides[0].offsetWidth; // Get initial width of the slides
 
     function setActiveSlide(index) {
         currentSlide = index;
@@ -325,6 +326,7 @@ function setupCustomSlider() {
     }
 
     function updateSlidePosition() {
+        slideWidth = slides[0].offsetWidth; // Recalculate slide width after resize
         currentTranslate = -currentSlide * slideWidth;
         slides.forEach(slide => {
             slide.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
@@ -409,12 +411,15 @@ function setupCustomSlider() {
     }
 
     window.addEventListener('resize', () => {
-        slideWidth = slides[0].offsetWidth;
-        updateSlidePosition();
+        slideWidth = slides[0].offsetWidth; // Recalculate the slide width after resizing
+        updateSlidePosition(); // Ensure the slides are aligned correctly
     });
 
     updateSlidePosition(); // Initialize slider position
 }
+
+setupCustomSlider(); // Call the function to set up the slider
+
 
 // Initialize the slider after DOM content is loaded
 document.addEventListener('DOMContentLoaded', setupCustomSlider);

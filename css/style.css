@@ -435,7 +435,7 @@ a {
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider-container {
   width: 100%;
-  max-width: 800px; /* Adjust as needed */
+  max-width: 800px; /* Adjust to your design */
   overflow: hidden;
   margin: 0 auto;
   position: relative;
