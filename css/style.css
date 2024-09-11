@@ -834,7 +834,6 @@ a {
 
 .uebermich-background {
   background-color: var(--p-supersubtle);
-  gap: 404px;
 }
 
 .uebermich {
@@ -907,7 +906,7 @@ h4 {
   font-family: "jaf-cupidus-text", sans-serif;
   font-size: 1.25rem;
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 120%; /* 1.75rem */
   color: var(--Greyscale-Text-Body, #493D42);
 }
