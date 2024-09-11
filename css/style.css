@@ -70,10 +70,10 @@
   display: none;
 }
 
-/* span,
+span,
 .regular {
   font-style: normal;
-} */
+}
 
 a {
   text-decoration: none;
@@ -898,17 +898,21 @@ a {
 }
 
 .mobile {
-  display: flex;
+  display: block;
 }
 
 
 @media screen and (min-width: 600px) {
 
   .tablet {
-    display: flex;
+    display: block;
   }
 
   .mobile {
+    display: none;
+  }
+
+  .desktop {
     display: none;
   }
 
@@ -952,7 +956,7 @@ a {
   }
 
   .desktop {
-    display: flex;
+    display: block;
   }
 
   .uebermich {
