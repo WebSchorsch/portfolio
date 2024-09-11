@@ -918,6 +918,12 @@ a {
 
 @media screen and (min-width: 950px) {
 
+  
+  .mobile {
+    display: none;
+  }
+
+
   .uebermich {
     display: flex;
     flex-direction: column;
