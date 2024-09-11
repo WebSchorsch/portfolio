@@ -26,6 +26,22 @@
   pointer-events: auto;
 }
 
+.menu-2 {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  z-index: 10;
+  padding: 3% 0%;
+  pointer-events: none;
+}
+
+.menu-2 a {
+  pointer-events: auto;
+}
+
+
 .footer {
   display: flex;
   padding: 1% 10%;
@@ -672,6 +688,26 @@ a {
   gap: 1rem;
 }
 
+.uebermich {
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10% 5%;
+  gap: 2.75rem;
+}
+
+.contact {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.contact span {
+  display: none;
+}
+
 .project > img {
     /* display: flex;
     align-items: center;
@@ -1050,6 +1086,7 @@ p {
     align-items: center;
     gap: var(--s-Spacing, 0.5rem);
     justify-content: space-between;
+    height: 3rem;
     /* style */
  
     color: var(--Surface-Darker, #A22653);
