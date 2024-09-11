@@ -835,9 +835,9 @@ h2 {
 
 h3 {
   font-family: Change;
-  font-size: 1.9375rem;
+  font-size: 1.9375rem; 
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 130%; /* 40.3px */
   color: var(--p-text, #392040);
 }
