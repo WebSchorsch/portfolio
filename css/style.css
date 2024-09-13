@@ -137,14 +137,12 @@ a {
   display: none;
 }
 
+/* Default Card Style */
 .card {
   cursor: pointer;
   display: inline-flex;
-  /* flex-direction: column; */
   align-items: center;
   justify-content: space-between;
-  /* justify-content: center; */
-  /* position: relative; */
   padding: 0.75rem;
   gap: var(--V-s-Padding, 0.75rem);
   border-radius: var(--V-s-Padding, 0.75rem);
@@ -152,36 +150,27 @@ a {
   background: var(--Greyscale-Surface-Very-Subtle, #fff);
   box-shadow: 0px 2px 4px 0px rgba(73, 61, 66, 0.16);
   background-color: #ffff;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
 }
 
-.card-content {
-  display: flex;
-  gap: 0.25rem;
-}
-
-.card-content h3 {
-  display: none;
-}
-
+/* Hover Effect */
 .card:hover {
   border: 1px solid var(--p-light, #e9a8c2);
   background: var(--p-supersubtle, #fffcfe);
 }
 
-.card input:checked {
-  border: 1px solid var(--p-light, #c7366b);
+/* Style for Selected Card */
+.card.checked {
+  border: 1px solid var(--Surface-Default, #C7366B);
+  background: var(--Surface-Super-Subtle, #FFFCFE);
 }
 
+/* Checkmark Style */
 .checkmark {
   height: 16px;
   min-width: 16px;
   border-radius: 50%;
   box-shadow: 1px 2px 4px 0px rgba(116, 97, 104, 0.2) inset;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,7 +178,6 @@ a {
 
 .checkmark:after {
   content: "";
-  /* position: relative; */
   width: 8px;
   height: 8px;
   border-radius: 50%;
@@ -200,13 +188,10 @@ a {
   background-color: var(--p-light, #e9a8c2);
 }
 
-.card input:checked ~ .checkmark {
+.card.checked .checkmark {
   background-color: #c7366b;
 }
 
-.card input:checked ~ .card {
-  border: 1px solid var(--p-light, #c7366b);
-}
 
 .welcome-content-bottom {
   display: flex;

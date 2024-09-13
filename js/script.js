@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nextButtonNav = document.querySelector('.next-button');
     const heroSection = document.querySelector('.georg-hero');
     const sliders = document.querySelectorAll('.custom-slider');
+    const cards = document.querySelectorAll('.card');
     sliders.forEach(slider => setupCustomSlider(slider));
 
     // Initialize All Functionalities
@@ -17,6 +18,24 @@ document.addEventListener('DOMContentLoaded', function() {
     setupNavigationButtons();
     // setupCustomSlider();
 
+// ---------------------
+// Cards are checked
+// ---------------------
+
+    cards.forEach(card => {
+        const radioInput = card.querySelector('input[type="radio"]');
+        radioInput.addEventListener('change', function() {
+            if (radioInput.checked) {
+                // Remove 'checked' class from all cards
+                cards.forEach(card => card.classList.remove('checked'));
+                // Add 'checked' class to the currently selected card
+                card.classList.add('checked');
+            }
+        });
+    });
+
+
+    
 // ---------------------
 // Avatar Change Function
 // ---------------------
