@@ -323,15 +323,16 @@ function setupScrollButton() {
         });
     
         // Touch events for swiping on mobile devices
-        slidesWrapper.addEventListener('touchstart', touchStart, { passive: true });
+        slidesWrapper.addEventListener('touchstart', touchStart, { passive: false });
         slidesWrapper.addEventListener('touchend', touchEnd);
-        slidesWrapper.addEventListener('touchmove', touchMove, { passive: true });
+        slidesWrapper.addEventListener('touchmove', touchMove, { passive: false });
     
         // Mouse events for dragging on desktop
         slidesWrapper.addEventListener('mousedown', touchStart);
         slidesWrapper.addEventListener('mouseup', touchEnd);
         slidesWrapper.addEventListener('mouseleave', touchEnd);
         slidesWrapper.addEventListener('mousemove', touchMove);
+        slidesWrapper.addEventListener('click', clickHandler);
     
         function touchStart(event) {
             isDragging = true;
@@ -339,6 +340,7 @@ function setupScrollButton() {
             prevTranslate = currentTranslate;
             animationID = requestAnimationFrame(animation);
             slidesWrapper.style.transition = 'none'; // Disable transition during drag
+            event.preventDefault(); // Prevent default touch behavior
         }
     
         function touchMove(event) {
@@ -346,6 +348,7 @@ function setupScrollButton() {
                 const currentPosition = getPositionX(event);
                 const distanceMoved = currentPosition - startPos;
                 currentTranslate = prevTranslate + distanceMoved;
+                event.preventDefault(); // Prevent default touch behavior
             }
         }
     
@@ -372,6 +375,17 @@ function setupScrollButton() {
             if (isDragging) requestAnimationFrame(animation);
         }
     
+        // Handle clicks to prevent navigation when dragging
+        let isClickPrevented = false;
+        function clickHandler(event) {
+            if (isClickPrevented) {
+                event.preventDefault();
+                isClickPrevented = false;
+            }
+        }
+    
+        slidesWrapper.addEventListener('dragstart', (e) => e.preventDefault());
+    
         // Ensure the slider resizes properly on window resize
         window.addEventListener('resize', () => {
             slideWidth = slides[0].offsetWidth; // Recalculate the slide width
@@ -380,6 +394,7 @@ function setupScrollButton() {
     
         updateSlidePosition(); // Initialize the slider's position
     }
+    
 
 
     // ---------------------
