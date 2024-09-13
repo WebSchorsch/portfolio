@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupScrollButton();
     setupScrollForNavButtons();
     setupNavigationButtons();
-    setupCustomSlider();
+    // setupCustomSlider();
 
 // ---------------------
 // Avatar Change Function
@@ -261,6 +261,7 @@ function setupScrollButton() {
         const prevButton = sliderContainer.querySelector('.custom-prev-button');
         const nextButton = sliderContainer.querySelector('.custom-next-button');
         const dotsContainer = sliderContainer.querySelector('.custom-pagination-dots');
+    
         let currentSlide = 0;
         let isDragging = false;
         let startPos = 0;
@@ -270,6 +271,7 @@ function setupScrollButton() {
         let slideWidth = slides[0].offsetWidth;
     
         // Create pagination dots
+        dotsContainer.innerHTML = ''; // Clear any existing dots
         slides.forEach((_, index) => {
             const dot = document.createElement('span');
             dot.classList.add('custom-pagination-dot');
@@ -323,38 +325,36 @@ function setupScrollButton() {
         });
     
         // Touch events for swiping on mobile devices
-        slidesWrapper.addEventListener('touchstart', touchStart, { passive: false });
-        slidesWrapper.addEventListener('touchend', touchEnd);
-        slidesWrapper.addEventListener('touchmove', touchMove, { passive: false });
+        slides.forEach((slide, index) => {
+            slide.addEventListener('touchstart', touchStart(index), { passive: false });
+            slide.addEventListener('touchend', touchEnd);
+            slide.addEventListener('touchmove', touchMove, { passive: false });
+        });
     
-        // Mouse events for dragging on desktop
-        slidesWrapper.addEventListener('mousedown', touchStart);
-        slidesWrapper.addEventListener('mouseup', touchEnd);
-        slidesWrapper.addEventListener('mouseleave', touchEnd);
-        slidesWrapper.addEventListener('mousemove', touchMove);
-        slidesWrapper.addEventListener('click', clickHandler);
-    
-        function touchStart(event) {
-            isDragging = true;
-            startPos = getPositionX(event);
-            prevTranslate = currentTranslate;
-            animationID = requestAnimationFrame(animation);
-            slidesWrapper.style.transition = 'none'; // Disable transition during drag
-            event.preventDefault(); // Prevent default touch behavior
+        function touchStart(index) {
+            return function (event) {
+                event.preventDefault(); // Prevent default touch behavior
+                currentSlide = index;
+                startPos = event.touches[0].clientX;
+                isDragging = true;
+                animationID = requestAnimationFrame(animation);
+                prevTranslate = currentTranslate;
+                slidesWrapper.style.transition = 'none'; // Disable transition during drag
+            };
         }
     
         function touchMove(event) {
             if (isDragging) {
-                const currentPosition = getPositionX(event);
+                event.preventDefault(); // Prevent default touch behavior
+                const currentPosition = event.touches[0].clientX;
                 const distanceMoved = currentPosition - startPos;
                 currentTranslate = prevTranslate + distanceMoved;
-                event.preventDefault(); // Prevent default touch behavior
             }
         }
     
         function touchEnd() {
-            cancelAnimationFrame(animationID);
             isDragging = false;
+            cancelAnimationFrame(animationID);
             const movedBy = currentTranslate - prevTranslate;
     
             if (movedBy < -50 && currentSlide < slides.length - 1) {
@@ -364,10 +364,8 @@ function setupScrollButton() {
             } else {
                 setActiveSlide(currentSlide);
             }
-        }
     
-        function getPositionX(event) {
-            return event.type.includes('mouse') ? event.clientX : event.touches[0].clientX;
+            slidesWrapper.style.transition = 'transform 0.3s ease-in-out'; // Re-enable transition
         }
     
         function animation() {
@@ -375,15 +373,7 @@ function setupScrollButton() {
             if (isDragging) requestAnimationFrame(animation);
         }
     
-        // Handle clicks to prevent navigation when dragging
-        let isClickPrevented = false;
-        function clickHandler(event) {
-            if (isClickPrevented) {
-                event.preventDefault();
-                isClickPrevented = false;
-            }
-        }
-    
+        // Prevent default image dragging
         slidesWrapper.addEventListener('dragstart', (e) => e.preventDefault());
     
         // Ensure the slider resizes properly on window resize

@@ -1027,7 +1027,7 @@ a {
   .vita-caption-content {
     display: flex;
     flex: 1 1 12rem;
-    
+    /* max-width: 14rem; */
     flex-direction: column;
     align-items: flex-start;
   }
