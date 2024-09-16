@@ -17,14 +17,28 @@
     
     <nav class="menu">
         <div class="navigation-buttons">
-            <a href="#" class="button-teritary copy bold prev-button">Zurück</a>
-            <a href="#" class="button-teritary copy bold next-button">Weiter</a>           
+            <a href="#" class="button-primary copy bold prev-button">
+                Zurück 
+                <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 3.707 2.354 9.354a.5.5 0 1 1-.708-.708z"/>
+                    <path fill-rule="evenodd" d="M7.646 6.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1-.708.708L8 7.707l-5.646 5.647a.5.5 0 0 1-.708-.708z"/>
+                  </svg></span>
+                </a>
+            <a href="#" class="button-primary copy bold next-button">Weiter<span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16"></svg>
+                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+              </svg></span>
+                
+            </a>           
         
         </div>
 
         <div class="menu-right">
             <a href="index.html" class="button-primary headline italic">Projekte</a>
-            <a href="uebermich.html" class="button-secondary headline italic">Über mich</a>
+            <a href="uebermich.html" class="button-secondary headline italic">Über mich <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+              </svg></a>
         </div>
     </nav>
 
@@ -57,8 +71,8 @@
                         <label class="card">
                             <input type="radio" name="image" value="./images/image1-1.png" data-filter="all" checked>
                             <div class="card-content">
-                                <p class="tablet-hide">💅🏻</p>
-                                <h3 class="regular">💅🏻</h3>
+                                <p class="mobile">💅🏻</p>
+                                <h3 class="tablet regular">💅🏻</h3>
                                 <p>Alle Skills</p>
                             </div>
                             <span class="checkmark"></span>
@@ -66,8 +80,8 @@
                         <label class="card">
                             <input type="radio" name="image" value="./images/image2-1.png" data-filter="ud">
                             <div class="card-content">
-                                <p class="tablet-hide">💻</p>
-                                <h3 class="regular">💻</h3>
+                                <p class="mobile">💻</p>
+                                <h3 class="tablet regular">💻</h3>
                                 <p>UI Designs</p>
                             </div>
                             <span class="checkmark"></span>
@@ -76,8 +90,8 @@
                             <input type="radio" name="image" value="./images/image3-1.png" data-filter="vd">
                             
                             <div class="card-content">
-                                <p class="tablet-hide">🎨</p>
-                                <h3 class="regular">🎨</h3>
+                                <p class="mobile">🎨</p>
+                                <h3 class="tablet regular">🎨</h3>
                                 <p>Art Design</p>
                             </div>
                             
@@ -86,8 +100,8 @@
                         <label class="card">
                             <input type="radio" name="image" value="./images/image4-1.png" data-filter="pv">
                             <div class="card-content">
-                                <p class="tablet-hide">📸</p>
-                                <h3 class="regular">📸</h3>
+                                <p class="mobile">📸</p>
+                                <h3 class="tablet regular">📸</h3>
                                 <p>Fotografie</p>
                             </div>
                             <span class="checkmark"></span>
@@ -328,7 +342,6 @@
             <div class="custom-pagination">
                 <!-- Left arrow button -->
                 <button class="custom-prev-button">&larr; Zurück</button>
-            
                 <!-- Pagination dots -->
                 <div class="custom-pagination-dots">
                     <!-- <span class="custom-pagination-dot active" data-slide="0"></span>

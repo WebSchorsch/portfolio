@@ -22,17 +22,22 @@ document.addEventListener('DOMContentLoaded', function() {
 // Cards are checked
 // ---------------------
 
-    cards.forEach(card => {
-        const radioInput = card.querySelector('input[type="radio"]');
-        radioInput.addEventListener('change', function() {
-            if (radioInput.checked) {
-                // Remove 'checked' class from all cards
-                cards.forEach(card => card.classList.remove('checked'));
-                // Add 'checked' class to the currently selected card
-                card.classList.add('checked');
-            }
-        });
+cards.forEach(card => {
+    const radioInput = card.querySelector('input[type="radio"]');
+    if (radioInput.checked) {
+        card.classList.add('checked'); // Ensure 'checked' class is added on load
+    }
+
+    // Add event listener to update the 'checked' state dynamically
+    radioInput.addEventListener('change', function() {
+        if (radioInput.checked) {
+            // Remove 'checked' class from all cards
+            cards.forEach(card => card.classList.remove('checked'));
+            // Add 'checked' class to the currently selected card
+            card.classList.add('checked');
+        }
     });
+});
 
 
     

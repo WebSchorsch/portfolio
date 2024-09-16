@@ -1,6 +1,6 @@
 /* root für rem ist 16px */
 
-/* Seite */
+/* Basics */
 
 * {
   margin: 0;
@@ -8,6 +8,32 @@
   box-sizing: border-box;
   hyphens: auto;
 }
+
+/* Base visibility */
+
+/* >>>>> DEFAULT <<<<< */
+
+.mobile {
+    display: block;
+}
+  
+  .tablet,
+  .desktop {
+    display: none;
+}
+
+span,
+.regular {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+
+/* MENU */
+
 
 .menu {
   position: fixed;
@@ -55,12 +81,15 @@
   pointer-events: auto;
 }
 
-
 .footer {
   display: flex;
   padding: 1% 2%;
   justify-content: flex-end;
 }
+
+
+/* >>>>> HERO SECTION <<<<< */
+
 
 .georg-hero {
   /* position: relative; */
@@ -74,23 +103,6 @@
   justify-content: center;
   padding: 4.5rem 5%;
   gap: 2rem;
-}
-
-.tablet {
-  display: none;
-}
-
-.desktop {
-  display: none;
-}
-
-span,
-.regular {
-  font-style: normal;
-}
-
-a {
-  text-decoration: none;
 }
 
 .intro {
@@ -113,14 +125,6 @@ a {
   /* transition: opacity 0.1s ease-in-out; */
 }
 
-/* .avatare.fade-out {
-    opacity: 1;
-}
-
-.avatare.fade-in {
-    opacity: 1; 
-} */
-
 .image-selector {
   display: grid;
   /* width: 100%; */
@@ -130,6 +134,12 @@ a {
 
 .image-selector input[type="radio"] {
   cursor: pointer;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
 }
 
 /* Hide the browser's default radio button */
@@ -205,458 +215,147 @@ a {
   text-align: right;
 }
 
-/* Responsive Hero • Part 1: Tablet */
-
-@media screen and (min-width: 600px) {
-  .georg-hero {
-    padding: 15% 12.5%;
-  }
-
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
-    display: block;
-  }
-
-  .desktop {
-    display: none;
-  }
-
-  .intro > img {
-    max-width: 100%;
-    max-height: 100%;
-  }
-
-  .intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .avatare {
-    order: 1;
-  }
-
-  .image-selector {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    align-items: flex-start;
-    padding: 1rem 1.5rem;
-  }
-
-  .card-content {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .card-content h3 {
-    display: flex;
-  }
-
-  .tablet-hide {
-    display: none;
-  }
-}
-
-/* Responsive Hero • Part 1: Desktop */
-@media screen and (min-width: 950px) {
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
-    display: none;
-  }
-
-  .desktop {
-    display: block;
-  }
-
-  .menu {
-    align-items: flex-end;
-    padding: 2% 2%;
-    }
-    
-  
-    .georg-hero {
-      height: 100vh;
-      padding: 0% 5%;
-    }
-
-
-  .intro {
-    display: flex;
-    flex-direction: row;
-    /* grid-template-columns: 2fr 2fr; */
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-  }
-
-  .intro > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    max-width: 750px;
-    /* align-items: center; */
-  }
-
-  .intro > img {
-    max-width: 350px;
-    width: auto;
-    /* max-width: 70%; */
-  }
-
-  .avatare {
-    justify-self: center;
-  }
-
-  .image-selector {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-}
-
-/* Sections */
-
-.tablet {
-    display: none;
-}
-  
-.desktop {
-    display: none;
-}
+/* >>>>> SECTIONS <<<<< */
 
 .section {
-  background-color: var(--white);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  /* min-height: 100vh; */
-  min-height: 100%;
-  /* min-height: 300px; */
-  padding: 15% 5%;
-  gap: 1rem;
+background-color: var(--white);
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+/* min-height: 100vh; */
+min-height: 100%;
+/* min-height: 300px; */
+padding: 15% 5%;
+gap: 1rem;
 }
 
 .thumbnail {
-  max-width: 100%;
-  justify-self: center;
+max-width: 100%;
+justify-self: center;
 }
 
 .section-content-image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 2rem;
 }
 
 .section-content {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 0.5rem;
 }
 
 .section-title {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 0.25rem;
+display: flex;
+flex-direction: column;
+justify-content: flex-start;
+gap: 0.25rem;
 }
 
 .navigator {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--H-xs-padding, 0.5rem);
-  color: var(--g-text);
-  cursor: pointer;
-  padding: 0.5rem 0rem;
+display: inline-flex;
+align-items: center;
+gap: var(--H-xs-padding, 0.5rem);
+color: var(--g-text);
+cursor: pointer;
+padding: 0.5rem 0rem;
 }
 
 .navigator:hover {
-  color: #a22653;
+color: #a22653;
 }
 
 
-/* Carousel */
-
-.carousel-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px; /* Adjust based on your needs */
-    margin: auto;
-    overflow: hidden;
-  }
-  
-  .carousel {
-    display: flex;
-    transition: transform 0.4s ease;
-    will-change: transform;
-  }
-  
-  .carousel-item {
-    min-width: 100%;
-    box-sizing: border-box;
-  }
-  
-  .carousel img {
-    width: 100%;
-    height: auto;
-  }
-  
-  
-  .carousel-controls p {
-    color:var(--p-default);
-    border: none;
-    padding: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .carousel-controls p:hover {
-    color: var(--p-hover)
-  }
-  
-  .carousel-dots {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 0.5rem;
-    margin-top: 10px;
-  }
-  
-  .dot {
-    height: 0.5rem;
-    width: 0.5rem;
-    margin: 0 0.125rem;
-    background-color: var(--Border-Lighter);
-    border-radius: 50%;
-    display: inline-block;
-    cursor: pointer;
-  }
-  
-  .dot.active {
-    background-color: var(--Border-Default);
-  }
+/* >>>>> SLIDER <<<<< */
 
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider {
-  width: 100%;
-  max-width: 800px; /* Adjust to your design */
-  overflow: hidden;
-  margin: 0 auto;
-  position: relative;
+width: 100%;
+max-width: 600px; /* Adjust to your design */
+overflow: hidden;
+margin: 0 auto;
+position: relative;
 }
 
 .slides-wrapper {
-  display: flex;
-  transition: transform 0.2s ease-in-out; /* Increase duration for a smoother effect */
-  will-change: transform;
+display: flex;
+transition: transform 0.2s ease-in-out; /* Increase duration for a smoother effect */
+will-change: transform;
 }
 
 .custom-slide {
-  min-width: 100%;
-  box-sizing: border-box;
-  transition: opacity 0.2s ease-in-out; /* Smooth fading effect */
+min-width: 100%;
+box-sizing: border-box;
+transition: opacity 0.2s ease-in-out; /* Smooth fading effect */
 }
 
 .custom-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* Arrows */
 .custom-prev-button,
 .custom-next-button {
-  font-size: 1rem; /* Ensure the text size matches <p> elements */
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--p-default);
-  padding: 0 1rem;
+font-family: "jaf-cupidus", sans-serif;
+font-size: 1rem; /* Ensure the text size matches <p> elements */
+display: inline-flex;
+align-items: center;
+justify-content: center;
+background: transparent;
+border: none;
+cursor: pointer;
+color: var(--p-default);
+padding: 0 1rem;
 }
 
 /* Position left and right buttons */
 .custom-prev-button {
-  margin-right: 1rem; /* Adjust spacing as needed */
+margin-right: 0rem; /* Adjust spacing as needed */
 }
 
 .custom-next-button {
-  margin-left: 1rem;
+margin-left: 0rem;
 }
-
 
 .custom-prev-button:hover,
 .custom-next-button:hover {
-    color: var(--p-hover);
+  color: var(--p-hover);
 }
 
 /* Pagination */
 .custom-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 10px;
-  position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 0.5rem;
+margin-top: 10px;
+position: relative;
 }
 
 /* Pagination dots */
 .custom-pagination-dot {
-  height: 0.5rem;
-  width: 0.5rem;
-  margin: 0 0.125rem;
-  background-color: var(--Border-Lighter);
-  border-radius: 50%;
-  display: inline-block;
-  cursor: pointer;
+height: 0.5rem;
+width: 0.5rem;
+margin: 0 0.125rem;
+background-color: var(--Border-Lighter);
+border-radius: 50%;
+display: inline-block;
+cursor: pointer;
 }
 
 .custom-pagination-dot.active {
-  background-color: var(--Border-Default);
-  opacity: 1;
+background-color: var(--Border-Default);
+opacity: 1;
 }
 
 
-
-/* Responsive Section Tablet */
-
-@media screen and (min-width: 600px) {
-  
-  .section {
-    gap: 3rem;
-    padding: 5% 10%;
-  }
-
-.image {
-    width: 80%;
-}
-
-  .section-content {
-    max-width: 75%;
-  }
-
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
-    display: block;
-  }
-
-  .desktop {
-    display: none;
-  }
-
-  .carousel-container {
-    max-width: 600px; /* Adjust based on your needs */
-
-  }
-
-}
-
-/* Responsive Section Desktop */
-
-@media screen and (min-width: 950px) {
-    .mobile {
-        display: none;
-    }
-
-    .tablet {
-        display: none;
-    }
-
-    .desktop {
-        display: block;
-    }
-
-    .section {
-        /* gap: 50rem; */
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-    }
-    .section-content-image {
-        /* background-color: #2626260f; */
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 3rem;
-    }
-
-    .section-content {
-        min-width: 400px;
-        max-width: 550px;
-        /* align-items: flex-end; */
-        /* justify-content: flex-end; */
-      }
-
-    .image {
-        /* background-color: #8cb98761; */
-        /* width: 80%;
-        height: auto; */
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-/* 
-    .section-content {
-        background-color: #3920403f;
-    } */
-
-    .thumbnail {
-        width: 100%;
-        max-width: 700px;
-        height: auto;
-        display: block;
-    }
-
-    .section-content > button {
-        align-self: flex-start;
-    }
-
-    .left .section-content-image {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
-
-
-    .left .section-content-image .image,.carousel-container, .custom-slider-container {
-        order: 1;
-    }
-
-
-
-
-}
-
-
-/* Project Pages */
-
-.mobile {
-  display: block;
-}
-
-.tablet {
-  display: none;
-}
-
-.desktop {
-  display: none;
-}
+/* >>>>> PROJECTS <<<<< */
 
 .hero-thumbnail {
   width: 100%;
@@ -732,105 +431,7 @@ a {
   height: auto;
 }
 
-
-@media screen and (min-width: 600px) {
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
-    display: block;
-  }
-
-  .desktop {
-    display: none;
-  }
-
-  .hero-thumbnail {
-    height: 60vh; /* Set the height to half of the viewport height */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    width: 100vw;
-  }
-
-  .project {
-    display: grid;
-    grid-template-columns: 1fr;
-    align-items: center;
-    padding: 10% 15%;
-    gap: 2rem;
-    text-align: left;
-  }
-}
-
-@media screen and (min-width: 950px) {
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
-    display: none;
-  }
-
-  .desktop {
-    display: block;
-  }
-
-  .hero-thumbnail {
-    height: 60vh; /* Set the height to half of the viewport height */
-    object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    width: 100vw;
-  }
-
-  .project-title-content {
-    gap: 1rem;
-    max-width: 500px;
-  }
-
-  .project {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    padding: 2% 10% 0% 10%;
-    text-align: left;
-  }
-
-  .project > img {
-    min-width: 400px;
-    max-width: 700px;
-    height: auto;
-    /* order: 3; */
-    /* align-self: center; */
-  }
-
-  .right {
-    grid-template-columns: 3fr 6fr;
-  }
-
-  .left {
-    grid-template-columns: 6fr 3fr;
-  }
-
-  .left > .project-title-content {
-    order: 1;
-  }
-
-  .panorama{
-    display: flex;
-    max-width: 100%;
-    justify-content: center;
-    padding: 0% 10% 2% 10%;
-
-  }
-
-  .panorama > img {
-  max-width: 70%;
-  }
-}
-
-
-/* Über Mich */
-
+/* ÜBER MICH */
 
 .uebermich-background {
   background-color: var(--p-supersubtle);
@@ -892,77 +493,149 @@ a {
   gap: 0rem;
 }
 
-.desktop {
-  display: none;
-}
 
-.mobile {
-  display: block;
-}
-
-.tablet {
-  display: none;
-}
-
+/* >>>> TABLET <<<< */
 
 @media screen and (min-width: 600px) {
+  .georg-hero {
+    padding: 15% 12.5%;
+  }
+
+  .mobile, .desktop {
+    display: none;
+  }
 
   .tablet {
     display: block;
   }
 
-  .mobile {
-    display: none;
+  .intro > img {
+    max-width: 100%;
+    max-height: 100%;
   }
 
-  .desktop {
-    display: none;
+  .intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
-  .uebermich {
+  .avatare {
+    order: 1;
+  }
+
+  .image-selector {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    align-items: flex-start;
+    padding: 1rem 1.5rem;
+  }
+
+  .card-content {
     display: flex;
     flex-direction: column;
-    padding: 10% 3rem;
-    gap: 2.75rem;
+    gap: 0.5rem;
   }
 
-  .philosophie {
+  .card-content h3 {
     display: flex;
-    min-width: 60ch;
-    max-width: 90ch;
-    width: 100%;
   }
 
+  /* .tablet-hide {
+    display: none;
+  } */
 
-  .vita {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    row-gap: 3.75rem;
-    column-gap: 2rem;
-    padding: 10% 3rem;
+
+  /* Sections */
+
+  .section {
+    gap: 3rem;
+    padding: 5% 10%;
+}
+
+.image {
+    width: 80%;
+}
+
+  .section-content {
+    max-width: 75%;
+  }
+
+  .carousel-container {
+    max-width: 600px; /* Adjust based on your needs */
 
   }
 
-  .vita-caption-content {
-    display: flex;
-    flex: 1 1 18.75rem;
-    max-width: 18.75rem;
-    flex-direction: column;
-    align-items: flex-start;
+  /* >>>>> PROJECTS TABLET <<<<< */
+
+  .hero-thumbnail {
+    height: 60vh; /* Set the height to half of the viewport height */
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+    width: 100vw;
   }
+
+  .project {
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    padding: 10% 15%;
+    gap: 2rem;
+    text-align: left;
 
 }
+
+/* Über mich Tablet */
+
+.uebermich {
+  display: flex;
+  flex-direction: column;
+  padding: 10% 3rem;
+  gap: 2.75rem;
+}
+
+.philosophie {
+  display: flex;
+  min-width: 60ch;
+  max-width: 90ch;
+  width: 100%;
+}
+
+
+.vita {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  row-gap: 3.75rem;
+  column-gap: 2rem;
+  padding: 10% 3rem;
+
+}
+
+.vita-caption-content {
+  display: flex;
+  flex: 1 1 18.75rem;
+  max-width: 18.75rem;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+}
+
+
+
+
+
+
+
+
+
+/* >>>>> DESKTOP <<<<< */
 
 
 @media screen and (min-width: 950px) {
-  
-  .mobile {
-    display: none;
-  }
-
-  .tablet {
+  .mobile, .tablet {
     display: none;
   }
 
@@ -970,59 +643,217 @@ a {
     display: block;
   }
 
-  .menu-2 {
-    justify-content: flex-end;
+  .menu {
+    align-items: flex-end;
     padding: 2% 2%;
+    }
+    
+  
+/* HERO DESKTOP */
 
-  }
+  .georg-hero {
+      height: 100vh;
+      padding: 0% 5%;
+    }
 
-  .uebermich {
 
+  .intro {
     display: flex;
     flex-direction: row;
-    padding: 5rem 7.5rem;
-    align-items: flex-start;
-    align-self: stretch;
-    justify-content: space-between;
-    /* gap: 5rem; */
-    /* margin: 0 auto; */
-
-  }
-
-  .philosophie {
-    display: flex;
-    min-width: 60ch;
-    max-width: 90ch;
+    /* grid-template-columns: 2fr 2fr; */
     width: 100%;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
   }
 
-  .vita {
+  .intro > div {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    align-self: stretch;
-    max-width: 750px;
-    flex-wrap: wrap;
-    row-gap: 3.75rem;
-    column-gap: 2rem;
-    padding: 0rem 0rem;
-
-  }
-
-  .vita-caption-content {
-    display: flex;
-    flex: 1 1 12rem;
-    /* max-width: 14rem; */
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 750px;
+    /* align-items: center; */
   }
 
+  .intro > img {
+    max-width: 350px;
+    width: auto;
+    /* max-width: 70%; */
+  }
+
+  .avatare {
+    justify-self: center;
+  }
+
+  .image-selector {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  /* Sections Desktop */
+
+  .section {
+        /* gap: 50rem; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100vh;
+    }
+    .section-content-image {
+        /* background-color: #2626260f; */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+
+    .section-content {
+        min-width: 400px;
+        max-width: 550px;
+
+      }
+
+    .image {
+ 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .thumbnail {
+        width: 100%;
+        max-width: 700px;
+        height: auto;
+        display: block;
+    }
+
+    .section-content > button {
+        align-self: flex-start;
+    }
+
+    .left .section-content-image {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+
+    .left .section-content-image .image,.carousel-container, .custom-slider-container {
+        order: 1;
+    }
+
+    /* PROJECTS DESKTOP */
+
+
+    .hero-thumbnail {
+      height: 60vh; /* Set the height to half of the viewport height */
+      object-fit: cover; /* Ensures the image covers the entire area without distortion */
+      width: 100vw;
+    }
+  
+    .project-title-content {
+      gap: 1rem;
+      max-width: 500px;
+    }
+  
+    .project {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      padding: 2% 10% 0% 10%;
+      text-align: left;
+    }
+  
+    .project > img {
+      min-width: 400px;
+      max-width: 700px;
+      height: auto;
+      /* order: 3; */
+      /* align-self: center; */
+    }
+  
+    .right {
+      grid-template-columns: 3fr 6fr;
+    }
+  
+    .left {
+      grid-template-columns: 6fr 3fr;
+    }
+  
+    .left > .project-title-content {
+      order: 1;
+    }
+  
+    .panorama{
+      display: flex;
+      max-width: 100%;
+      justify-content: center;
+      padding: 0% 10% 2% 10%;
+  
+    }
+  
+    .panorama > img {
+    max-width: 70%;
+    }
+
+
+    /* Über Mich Desktop */
+
+    .menu-2 {
+      justify-content: flex-end;
+      padding: 2% 2%;
+  
+    }
+  
+    .uebermich {
+  
+      display: flex;
+      flex-direction: row;
+      padding: 5rem 7.5rem;
+      align-items: flex-start;
+      align-self: stretch;
+      justify-content: space-between;
+      /* gap: 5rem; */
+      /* margin: 0 auto; */
+  
+    }
+  
+    .philosophie {
+      display: flex;
+      min-width: 60ch;
+      max-width: 90ch;
+      width: 100%;
+    }
+  
+    .vita {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      align-self: stretch;
+      max-width: 750px;
+      flex-wrap: wrap;
+      row-gap: 3.75rem;
+      column-gap: 2rem;
+      padding: 0rem 0rem;
+  
+    }
+  
+    .vita-caption-content {
+      display: flex;
+      flex: 1 1 12rem;
+      /* max-width: 14rem; */
+      flex-direction: column;
+      align-items: flex-start;
+    }
 
 
 }
 
 
-/* Variables */
+
+
+/* >>>>> VARIABLES <<<<< */
 
 h1 {
   font-family: "change", serif;
@@ -1135,7 +966,7 @@ p {
     box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 2px 4px 0px rgba(73, 61, 66, 0.04);
 }
 
-/* Variables */
+/* Colors */
 
 :root {
   /*primary colors*/
@@ -1159,9 +990,7 @@ p {
   --Border-Lighter: #DF82A5;
   --Surface-Darker: #a22653;
   --Surface-Subtle: #FFEDF4;
-  
-
-  
+   
 
   /* greyscales */
 
@@ -1211,15 +1040,9 @@ p {
 
 
 
-/* Components */
-
-.icon {
-  color: var(--p-default, #c7366b);
-}
-
+/* >>>> COMPONENTS <<<< */
 
 /* Buttons  */
-
 
 .button-primary {
     /* layout */
@@ -1248,8 +1071,6 @@ p {
 }
 
 
-
-
 .button-secondary {
     /* layout */
     display: inline-flex;
@@ -1276,20 +1097,6 @@ p {
   /* background: var(--p-hover-2, #ffe8f1); */
   background: #D9B4C34D;
 }
-
-
-
-/* 
-.button-secondary-active {
-  padding: var(--V-xs-padding, 0.5rem) var(--H-s-padding, 1rem);
-  border-radius: var(--Radius, 0.5rem);
-  border: 0.5px solid var(--p-Default, #c7366b);
-  background: var(--p-Subtle, #ffedf4);
-  cursor: pointer;
-  box-shadow: -2px -2px 8px 0px rgba(120, 29, 63, 0.1) inset,
-    2px 2px 4px 0px rgba(120, 29, 63, 0.3) inset;
-}
- */
 
 .button-teritary {
     padding: var(--V-xxxs-padding, 0.25rem) var(--H-s-padding, 0.75rem);
@@ -1339,8 +1146,8 @@ p {
 .filterDiv {
     transition: opacity 0.5s ease; /* Smooth transition for hiding/showing sections */
 }
-
+/* 
 .hidden {
-    opacity: 0; /* Make the section fully transparent */
-    display: none !important; /* Ensure it does not take up space */
-}
+    opacity: 0; /* Make the section fully transparent
+    display: none !important; /* Ensure it does not take up space
+} */
