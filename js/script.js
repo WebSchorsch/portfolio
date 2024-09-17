@@ -127,15 +127,16 @@ function setupScrollButton() {
         function updateSections() {
             // Disconnect existing observer
             if (observer) observer.disconnect();
-
+    
             // Update sections to include hero and currently visible filterable sections
+            const heroSection = document.querySelector('.georg-hero');
             const visibleSections = Array.from(document.querySelectorAll('.filterDiv:not(.hidden)'));
             sections = [heroSection, ...visibleSections];
-
+    
             // Re-observe the new set of sections
             sections.forEach(section => observer.observe(section));
         }
-
+    
         // Function to update navigation buttons visibility and text
         function updateNavigationButtons() {
             // Hide prevButtonNav if at the top (hero section)
@@ -144,15 +145,31 @@ function setupScrollButton() {
             } else {
                 prevButtonNav.style.display = 'inline-block';
             }
-
+    
+            // Get the text span inside the next-button
+            const nextButtonText = nextButtonNav.querySelector('.button-text');
+    
             // Change nextButtonNav text if at the last section
             if (currentIndex >= sections.length - 1) {
-                nextButtonNav.textContent = 'Zum Anfang';
+                nextButtonText.textContent = 'Zum Anfang';
+    
+                // Optionally change the icon when at the last section
+                const nextIcon = nextButtonNav.querySelector('svg');
+                nextIcon.innerHTML = `
+                  <path fill-rule="evenodd" d="M3.646 11.854a.5.5 0 0 0 .708 0L8 8.207l3.646 3.647a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 0 0 0 .708M2.4 5.2c0 .22.18.4.4.4h10.4a.4.4 0 0 0 0-.8H2.8a.4.4 0 0 0-.4.4"/>
+                `;
             } else {
-                nextButtonNav.textContent = 'Weiter';
+                nextButtonText.textContent = 'Weiter';
+    
+                // Revert to the original icon
+                const nextIcon = nextButtonNav.querySelector('svg');
+                nextIcon.innerHTML = `
+                  <path fill-rule="evenodd" d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                  <path fill-rule="evenodd" d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
+                `;
             }
         }
-
+    
         // Callback for Intersection Observer
         function intersectionCallback(entries) {
             entries.forEach(entry => {
@@ -162,7 +179,7 @@ function setupScrollButton() {
                 }
             });
         }
-
+    
         // Create Intersection Observer
         const observerOptions = {
             root: null,
@@ -170,11 +187,11 @@ function setupScrollButton() {
             threshold: 0.6 // Adjusted threshold for better detection
         };
         observer = new IntersectionObserver(intersectionCallback, observerOptions);
-
+    
         // Initial setup
         updateSections();
         updateNavigationButtons();
-
+    
         // Event Listener for Next Button
         nextButtonNav.addEventListener('click', function(event) {
             event.preventDefault();
@@ -187,7 +204,7 @@ function setupScrollButton() {
                 currentIndex = 0;
             }
         });
-
+    
         // Event Listener for Previous Button
         prevButtonNav.addEventListener('click', function(event) {
             event.preventDefault();
@@ -196,11 +213,11 @@ function setupScrollButton() {
                 sections[currentIndex].scrollIntoView({ behavior: 'smooth' });
             } else {
                 // If at the hero section, scroll to top
-                heroSection.scrollIntoView({ behavior: 'smooth' });
+                sections[0].scrollIntoView({ behavior: 'smooth' });
                 currentIndex = 0;
             }
         });
-
+    
         // Reinitialize navigation when filters change
         document.addEventListener('filterChanged', () => {
             updateSections();

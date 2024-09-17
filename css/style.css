@@ -87,6 +87,12 @@ a {
   justify-content: flex-end;
 }
 
+.navigation-buttons svg {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+
 
 /* >>>>> HERO SECTION <<<<< */
 
