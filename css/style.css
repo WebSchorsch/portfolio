@@ -546,21 +546,20 @@ opacity: 1;
   .card {
     align-items: flex-start;
     padding: 1rem 1.5rem;
+    /* width: 35px; */
   }
 
   .card-content {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+
   }
 
   .card-content h3 {
     display: flex;
   }
 
-  /* .tablet-hide {
-    display: none;
-  } */
 
 
   /* Sections */
