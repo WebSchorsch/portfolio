@@ -1146,8 +1146,8 @@ p {
 .filterDiv {
     transition: opacity 0.5s ease; /* Smooth transition for hiding/showing sections */
 }
-/* 
+
 .hidden {
-    opacity: 0; /* Make the section fully transparent
-    display: none !important; /* Ensure it does not take up space
-} */
+    opacity: 0; /* Make the section fully transparent */
+    display: none !important; /* Ensure it does not take up space */
+}
