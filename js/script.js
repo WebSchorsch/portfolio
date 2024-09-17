@@ -151,7 +151,7 @@ function setupScrollButton() {
     
             // Change nextButtonNav text if at the last section
             if (currentIndex >= sections.length - 1) {
-                nextButtonText.textContent = 'Zum Anfang';
+                nextButtonText.textContent = 'Back to the top';
     
                 // Optionally change the icon when at the last section
                 const nextIcon = nextButtonNav.querySelector('svg');
@@ -161,7 +161,7 @@ function setupScrollButton() {
                 </svg>
                 `;
             } else {
-                nextButtonText.textContent = 'Weiter';
+                nextButtonText.textContent = 'Next';
     
                 // Revert to the original icon
                 const nextIcon = nextButtonNav.querySelector('svg');
