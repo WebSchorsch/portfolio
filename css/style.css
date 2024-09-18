@@ -707,7 +707,7 @@ opacity: 1;
     flex-direction: column;
     justify-content: center;
     gap: 4rem;
-    max-width: 60%;
+    max-width: 40%;
   }
 
   .intro > div h4,h3,h2,h1,p {
@@ -754,6 +754,7 @@ opacity: 1;
 
       }
 
+      
     .image {
  
         display: flex;
