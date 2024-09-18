@@ -88,8 +88,8 @@ a {
 }
 
 .navigation-buttons svg {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     vertical-align: middle;
 }
 
@@ -111,10 +111,16 @@ a {
   gap: 2rem;
 }
 
-.georg-hero > p, h3, h1 {
+.georg-hero p {
   text-align: center;
   /* max-width: 60ch; */
 }
+
+.georg-hero h3 {
+  text-align: center;
+  /* max-width: 60ch; */
+}
+
 
 .intro {
   display: flex;
@@ -189,7 +195,7 @@ a {
 /* Style for Selected Card */
 .card.checked {
   border: 1px solid var(--Surface-Default, #C7366B);
-  background: var(--p-verysubtle, #FFFCFE);
+  background: var(--p-subtle, #FFFCFE);
   /* background: var(--Surface-Super-Subtle, #FFFCFE); */
   box-shadow: 0px 0px 0px 0px rgba(73, 61, 66, 0.16);
 
@@ -238,7 +244,7 @@ a {
 /* >>>>> SECTIONS <<<<< */
 
 .section {
-background-color: var(--white);
+background-color: var(--p-supersubtle);
 display: flex;
 flex-direction: column;
 justify-content: center;
@@ -551,8 +557,12 @@ opacity: 1;
 
   .intro {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
+    
+  }
+
+  .georg-hero h3 {
+    text-align: left;
     
   }
 
@@ -707,12 +717,12 @@ opacity: 1;
     flex-direction: column;
     justify-content: center;
     gap: 4rem;
-    max-width: 40%;
+    width: 40%;
   }
 
-  .intro > div h4,h3,h2,h1,p {
+  /* .intro > div h4,h3,h2,h1,p {
     text-align: left;
-  }
+  } */
 
   .intro > div > h4 {
     max-width: 70ch;
@@ -991,11 +1001,13 @@ p {
   text-decoration: underline;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: .125rem;
-  text-decoration-color: var(--Border-Lighter);
+  text-decoration-color: var(--hightlight-dark);
+  /* text-decoration-color: var(--Border-Lighter); */
 }
 
 .highlight {
-  background-color: var(--p-darksubtle);
+  background-color: var(--hightlight);
+  /* background-color: var(--p-darksubtle); */
   box-shadow: var(--p-darksubtle) calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
 }
 
@@ -1067,7 +1079,13 @@ p {
     --Greyscale-Surface-Subtle: #fcfcfc;
     --Greyscale-Surface-Disabled: #f9f7f9;
     --Greyscale-Text-Caption: #c0b5b9;
-    
+   
+    /* highlight */
+
+    --hightlight: #C7FFED;
+    --hightlight-dark: #A2E9D2;
+
+
   /* Tokens */
 
   --s-radius: 8px;
