@@ -101,7 +101,7 @@ a {
   /* position: relative; */
   /* height: 100vh; */
   /* background: var(--p-subtle, #FFEDF4); */
-  background: var(--p-verysubtle, #fff5f9);
+  /* background: var(--p-verysubtle, #fff5f9); */
   transition: background-color 0.3s ease-in-out; /* Smooth background transition */
 
   display: flex;
