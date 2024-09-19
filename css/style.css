@@ -99,14 +99,15 @@ a {
 
 .georg-hero {
   /* position: relative; */
-  /* height: 100vh; */
+  height: 100vh;
   /* background: var(--p-subtle, #FFEDF4); */
   /* background: var(--p-verysubtle, #fff5f9); */
   transition: background-color 0.3s ease-in-out; /* Smooth background transition */
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  /* justify-content: space-between; */
+  /* align-items: space-between; */
   justify-content: center;
   padding: 4.5rem 5%;
   gap: 1rem;
@@ -782,6 +783,8 @@ opacity: 1;
   .georg-hero {
       height: 100vh;
       padding: 0% 5%;
+      justify-content: center;
+      gap: 1rem;
     }
 
 
@@ -1003,7 +1006,7 @@ h2 {
   font-size: 2.4375rem;
   font-style: italic;
   font-weight: 400;
-  line-height: 120%; /* 50.7px */
+  line-height: 130%; /* 50.7px */
   color: var(--p-text, #392040);
 }
 
@@ -1012,7 +1015,7 @@ h3 {
   font-size: 1.9375rem; 
   font-style: italic;
   font-weight: 400;
-  line-height: 140%; /* 40.3px */
+  line-height: 150%; /* 40.3px */
   color: var(--p-text, #392040);
 }
 
