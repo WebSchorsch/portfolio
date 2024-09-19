@@ -47,19 +47,26 @@ cards.forEach(card => {
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
     const avatarImage = document.querySelector('.avatare');
+    const heroSection = document.querySelector('.georg-hero'); // Select the hero section
+
     radios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
-                avatarImage.src = this.value;
+                avatarImage.src = this.value; // Change the avatar image
+                const selectedBgColor = this.getAttribute('data-bg-color'); // Get the background color
+                heroSection.style.backgroundColor = selectedBgColor; // Update the background color of the hero section
             }
         });
     });
 
-    // Set initial avatar based on the first radio button being checked
-    const defaultRadio = radios[0];  // Assuming the first radio should be the default checked
+    // Set initial avatar and background based on the first radio button being checked
+    const defaultRadio = radios[0]; // Assuming the first radio should be the default checked
     defaultRadio.checked = true;
     avatarImage.src = defaultRadio.value;
+    const defaultBgColor = defaultRadio.getAttribute('data-bg-color'); // Get default background color
+    heroSection.style.backgroundColor = defaultBgColor; // Set default background color
 }
+
 
 // ---------------------
 // Filter Function
