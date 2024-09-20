@@ -795,20 +795,17 @@ opacity: 1;
   /* Sections Desktop */
 
   .section {
-        display: flex;
-        flex-direction: row;
-        padding: 10% 5%;
-        /* height: 100vh; */
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      padding: 10% 5%;
+      /* height: 100vh; */
     }
-      
-    /* .image {
- 
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    } */
-
+    
+    .content {
+      min-width: 60ch;
+    }
+    
     .thumbnail {
         width: 100%;
         max-width: 700px;
@@ -816,10 +813,15 @@ opacity: 1;
         display: block;
     }
 
-
-    .left .image,.carousel-container, .custom-slider-container {
-        order: 1;
+    .thumbnail,.custom-slider {
+      min-width: 350px;
     }
+
+    .left .thumbnail, .left .custom-slider {
+        order: 10;
+    }
+
+
 
     /* PROJECTS DESKTOP */
 
@@ -844,7 +846,6 @@ opacity: 1;
     .project > img {
       max-width: 700px;
       height: auto;
-      /* order: 3; */
       /* align-self: center; */
     }
   
@@ -855,11 +856,7 @@ opacity: 1;
     .left {
       grid-template-columns: 6fr 3fr;
     } */
-  
-    .left > .content {
-      order: 1;
-    }
-  
+   
     .panorama{
       display: flex;
       max-width: 100%;
@@ -935,7 +932,7 @@ h1 {
   font-size: 3.0625rem;
   font-style: italic;
   font-weight: 400;
-  line-height: 130%; /* 58.8px */
+  line-height: 120%; /* 58.8px */
   color: var(--p-text, #392040);
 }
 
