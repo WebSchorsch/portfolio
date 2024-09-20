@@ -346,8 +346,11 @@ color: #a22653;
 
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider {
-max-width: 700px; 
+max-width: 700px;
 overflow: hidden;
+display: flex;
+flex-direction: column;
+gap: 2rem;
 /* margin: 0;
 position: relative; */
 }
@@ -362,10 +365,13 @@ will-change: transform;
 min-width: 100%;
 box-sizing: border-box;
 transition: opacity 0.2s ease-in-out; /* Smooth fading effect */
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .custom-slide img {
-  width: 100%;
+  width: 600px;
   height: auto;
   display: block;
 }
@@ -437,7 +443,7 @@ opacity: 1;
 .project {
   background-color: var(--white);
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: column;
   justify-content: center;
   
@@ -469,6 +475,7 @@ opacity: 1;
 
 .project > img {
     max-width: 100%;
+    min-width: 350px;
 }
 
 /* Ensure the container maintains a 16:9 aspect ratio */
@@ -657,9 +664,9 @@ opacity: 1;
     padding: 5% 10%; */
 }
 
-.image {
+/* .image {
     width: 80%;
-}
+} */
 
   .carousel-container {
     max-width: 600px; /* Adjust based on your needs */
@@ -676,8 +683,13 @@ opacity: 1;
 
   .project {
     align-items: center;
+  }
 
-}
+  .project > img {
+    max-width: 80%;
+  }
+  
+  
 
 /* Über mich Tablet */
 
@@ -817,7 +829,7 @@ opacity: 1;
       min-width: 350px;
     }
 
-    .left .thumbnail, .left .custom-slider {
+    .left .thumbnail, .left .custom-slider, .left img {
         order: 10;
     }
 
@@ -848,6 +860,11 @@ opacity: 1;
       height: auto;
       /* align-self: center; */
     }
+
+    .minuspadding {
+      padding: 0% 5% 0% 5%;
+  
+    }
   
     /* .right {
       grid-template-columns: 3fr 6fr;
@@ -861,12 +878,7 @@ opacity: 1;
       display: flex;
       max-width: 100%;
       justify-content: center;
-      padding: 0% 10% 2% 10%;
-  
-    }
-  
-    .panorama > img {
-    max-width: 70%;
+      padding: 0% 10% 2% 10%;  
     }
 
 
