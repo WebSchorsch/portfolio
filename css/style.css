@@ -799,7 +799,7 @@ opacity: 1;
       flex-direction: row;
       flex-wrap: nowrap;
       padding: 10% 5%;
-      /* height: 100vh; */
+      height: 100vh;
     }
     
     .content {
@@ -1181,7 +1181,7 @@ p {
 --blue-hover-bg:  #FCFEFF;
 --blue-hover-stroke: #76C4E0;
 /* --blue-hover-checkmark: #289DCA; */
---blue-select-bg: #F5FDFF;
+--blue-select-bg: #EDFBFF;
 
 /* green */
 
@@ -1189,7 +1189,7 @@ p {
 --green-hover-bg:  #FCFFFD;
 --green-hover-stroke: #1D9638;
 /* --green-hover-checkmark: #06A384; */
---green-select-bg: #F5FFF8;
+--green-select-bg: #EDFFF2;
 
 /* lila  */
 
@@ -1197,7 +1197,7 @@ p {
 --lila-hover-bg:  #FEFCFF;
 --lila-hover-stroke: #C084FF;
 /* --lila-hover-checkmark: #289DCA; */
---lila-select-bg: #FAF5FF;
+--lila-select-bg: #F6EDFF;
 
   /* Tokens */
 
