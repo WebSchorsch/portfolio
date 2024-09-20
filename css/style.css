@@ -315,13 +315,10 @@ a {
 .section {
 background-color: var(--p-supersubtle);
 display: flex;
-flex-wrap: wrap;
 flex-direction: column;
+flex-wrap: wrap;
 justify-content: center;
-align-items: center;
-/* min-height: 100vh; */
-min-height: 100%;
-/* min-height: 300px; */
+
 padding: 10% 5%;
 gap: 2rem 5rem;
 }
@@ -349,11 +346,10 @@ color: #a22653;
 
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider {
-min-width: 400px;
 max-width: 700px; 
 overflow: hidden;
-/* margin: 0; */
-/* position: relative; */
+/* margin: 0;
+position: relative; */
 }
 
 .slides-wrapper {
@@ -444,6 +440,7 @@ opacity: 1;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
+  
   padding: 5% 5%;
   gap: 2rem 5rem;
 }
@@ -655,8 +652,9 @@ opacity: 1;
   /* Sections */
 
   .section {
-    gap: 3rem;
-    padding: 5% 10%;
+    align-items: center;
+    /* gap: 3rem;
+    padding: 5% 10%; */
 }
 
 .image {
@@ -677,9 +675,7 @@ opacity: 1;
   }
 
   .project {
-    display: flex;
     align-items: center;
-    text-align: left;
 
 }
 
@@ -799,22 +795,19 @@ opacity: 1;
   /* Sections Desktop */
 
   .section {
-        /* gap: 50rem; */
         display: flex;
-
-        flex-direction: column;
-        align-items: center;
-        height: 100vh;
-        /* padding: 5% 15%; */
+        flex-direction: row;
+        padding: 10% 5%;
+        /* height: 100vh; */
     }
       
-    .image {
+    /* .image {
  
         display: flex;
         justify-content: center;
         align-items: center;
         width: 100%;
-    }
+    } */
 
     .thumbnail {
         width: 100%;
@@ -845,7 +838,6 @@ opacity: 1;
     .project {
       display: flex;
       flex-direction: row;
-      justify-content: center;
       padding: 10% 5%;
     }
   
