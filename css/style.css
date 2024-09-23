@@ -29,12 +29,6 @@ span,
   font-style: normal;
 }
 
-a {
-  text-decoration: none;
-  color: var(--p-default);
-}
-
-
 /* MENU */
 
 
@@ -453,12 +447,31 @@ opacity: 1;
   gap: 2rem;
 }
 
+.addition {
+  display: flex;
+  flex-direction: column;
+  padding: 0% 5%;
+}
+
+
 .content {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
-  /* min-width: 60ch; */
-  max-width: 60ch;
+  width: 60ch;
+}
+
+#download-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  width: 60ch;
+}
+
+#download-content > img {
+  max-width: 100%;
 }
 
 .title {
@@ -487,7 +500,11 @@ opacity: 1;
   align-items: center;
   width: auto;
   aspect-ratio: 16 / 9;
-  min-width: 100%;
+  max-width: 100%;
+}
+
+#robbe {
+  width: 105%;
 }
 
 /* Style the iframe for responsiveness */
@@ -521,6 +538,7 @@ opacity: 1;
   width: 90%;
   height: auto;
 }
+
 
 /* ÜBER MICH */
 
@@ -681,7 +699,7 @@ opacity: 1;
   .hero-thumbnail {
     height: 60vh; /* Set the height to half of the viewport height */
     object-fit: cover; /* Ensures the image covers the entire area without distortion */
-    width: 100vw;
+    /* width: 100vw; */
   }
 
   .project {
@@ -817,10 +835,7 @@ opacity: 1;
       height: 100vh;
     }
     
-    .content {
-      min-width: 60ch;
-    }
-    
+   
     .thumbnail {
         width: 100%;
         max-width: 700px;
@@ -844,18 +859,26 @@ opacity: 1;
     .hero-thumbnail {
       height: 60vh; /* Set the height to half of the viewport height */
       object-fit: cover; /* Ensures the image covers the entire area without distortion */
-      width: 100vw;
+      /* width: 100vw; */
     }
   
-    .content {
-      gap: 1rem;
-      max-width: 500px;
-    }
   
     .project {
       display: flex;
       flex-direction: row;
       padding: 10% 5%;
+    }
+
+    .top {
+      display: flex;
+      flex-direction: row;
+      padding: 10% 5% 5% 5%;
+    }
+
+    .addition {
+      display: flex;
+      flex-direction: row;
+      padding: 5% 5% 5% 5%;
     }
   
     .project > img {
@@ -1041,6 +1064,13 @@ p {
   text-decoration-color: var(--highlight-dark);
   /* text-decoration-color: var(--Border-Lighter); */
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
 
 .highlight-light {
   background-color: var(--p-subtle);
