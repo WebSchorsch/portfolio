@@ -342,19 +342,23 @@ color: #a22653;
 
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider {
-max-width: 700px;
+max-width: 900px;
 overflow: hidden;
 display: flex;
 flex-direction: column;
 gap: 2rem;
 }
 
+#small-slider {
+  max-width: 700px;
+}
+
 .slides-wrapper {
 display: flex;
 transition: transform 0.2s ease-in-out; /* Increase duration for a smoother effect */
 will-change: transform;
-/* padding: 1rem;
-gap: 1rem; */
+margin: 1.5rem;
+gap: 4rem;
 }
 
 .custom-slide {
@@ -367,7 +371,7 @@ align-items: center;
 }
 
 .custom-slide img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
   display: block;
 }
@@ -854,7 +858,10 @@ opacity: 1;
         order: 10;
     }
 
-
+    .content {
+      max-width: 60ch;
+      min-width: 40ch;
+    }
 
     /* PROJECTS DESKTOP */
 

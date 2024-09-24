@@ -345,12 +345,12 @@ function setupScrollButton() {
             updateDots();
         }
     
-        // Update the slider's position
         function updateSlidePosition() {
-            currentTranslate = -currentSlide * slideWidth;
+            currentTranslate = -slides[currentSlide].offsetLeft;
             slidesWrapper.style.transform = `translateX(${currentTranslate}px)`;
-            slidesWrapper.style.transition = 'transform 0.3s ease-in-out'; // Smooth transition
+            slidesWrapper.style.transition = 'transform 0.3s ease-in-out';
         }
+        
     
         // Update pagination dots to reflect the active slide
         function updateDots() {
