@@ -1084,16 +1084,17 @@ a {
 
 .highlight-light {
   background-color: var(--p-subtle);
-  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
-  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  -webkit-box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
 }
 
 
 .highlight {
   /* color: var(--p-default); */
   background-color: var(--highlight);
-  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
-  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+
+  -webkit-box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
 
 }
 
@@ -1101,8 +1102,8 @@ a {
   /* color: var(--blue-default); */
   
   background-color: var(--highlight-b);
-  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
-  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  -webkit-box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
   
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
@@ -1114,8 +1115,8 @@ a {
   /* color: var(--green-default); */
 
   background-color: var(--highlight-g);
-  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
-  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  -webkit-box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
   text-underline-offset: .125rem;
@@ -1126,8 +1127,8 @@ a {
   /* color: var(--lila-default); */
 
   background-color: var(--highlight-l);
-  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
-  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  -webkit-box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle), var(--s-spacing, 0.5rem) 0px 0px var(--p-darksubtle);
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
   text-underline-offset: .125rem;
@@ -1266,7 +1267,7 @@ a {
   --l-radius: 1rem;
   --Radius-XL: 1.25rem;
 
-  --s-spacing: 8px;
+  --s-spacing: 0.5rem;
   --m-spacing: 16px;
   --l-spacing: 24px;
 
@@ -1330,7 +1331,7 @@ a {
     display: inline-flex;
     padding: var(--V-xs-padding, 0.5rem) var(--H-s-padding, 0.75rem);
     align-items: center;
-    gap: var(--s-Spacing, 0.5rem);
+    gap: var(--s-spacing, 0.5rem);
     justify-content: space-between;
     height: 3rem;
     /* style */
