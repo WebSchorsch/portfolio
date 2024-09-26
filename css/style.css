@@ -1084,13 +1084,16 @@ a {
 
 .highlight-light {
   background-color: var(--p-subtle);
-  box-shadow: calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
+  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
 }
+
 
 .highlight {
   /* color: var(--p-default); */
   background-color: var(--highlight);
-  box-shadow: calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
+  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
 
 }
 
@@ -1098,7 +1101,8 @@ a {
   /* color: var(--blue-default); */
   
   background-color: var(--highlight-b);
-  box-shadow: calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
+  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
   
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
@@ -1110,7 +1114,8 @@ a {
   /* color: var(--green-default); */
 
   background-color: var(--highlight-g);
-  box-shadow: calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
+  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
   text-underline-offset: .125rem;
@@ -1121,7 +1126,8 @@ a {
   /* color: var(--lila-default); */
 
   background-color: var(--highlight-l);
-  box-shadow: calc(-1 * var(--s-Spacing)) 0, var(--p-darksubtle) var(--s-Spacing) 0;
+  -webkit-box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
+  box-shadow: -var(--s-Spacing) 0px 0px var(--p-darksubtle), var(--s-Spacing) 0px 0px var(--p-darksubtle);
   /* text-decoration: underline;
   text-decoration-thickness: 0.25rem;
   text-underline-offset: .125rem;
