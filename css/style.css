@@ -1054,7 +1054,8 @@ p {
 .headline {
   color: var(--p-text);
   font-family: "Crimson Pro", serif;
-  /* font-family: "spectral", serif; */
+  font-family: "spectral", serif;
+  font-size: 1.25rem;
   font-size: 1.125rem;
   font-weight: 300;
   font-style: normal;
