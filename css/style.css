@@ -134,6 +134,10 @@ span,
   width: 100%;
 }
 
+picture > img {
+  max-width: 100%;
+}
+
 .intro > div > div {
   display: flex;
   flex-direction: column;
@@ -343,6 +347,7 @@ color: #a22653;
 /* Prevent content overflow and ensure proper responsiveness */
 .custom-slider {
 max-width: 900px;
+/* max-height: 700px: */
 overflow: hidden;
 display: flex;
 flex-direction: column;
@@ -372,6 +377,7 @@ align-items: center;
 
 .custom-slide img {
   max-width: 100%;
+  
   height: auto;
   display: block;
 }
@@ -640,7 +646,7 @@ opacity: 1;
     display: block;
   }
 
-  .intro > img {
+  .intro > picture {
     max-width: 100%;
     max-height: 100%;
   }
@@ -817,7 +823,7 @@ opacity: 1;
     max-width: 70ch;
   }
 
-  .intro > img {
+  .intro > picture {
     max-width: 350px;
     width: auto;
  }

@@ -46,13 +46,27 @@ cards.forEach(card => {
 // ---------------------
 function setupAvatarChange() {
     const radios = document.querySelectorAll('.image-selector input[type="radio"]');
-    const avatarImage = document.querySelector('.avatare');
+    const avatarPicture = document.querySelector('.avatare');
+    const sources = avatarPicture.querySelectorAll('source');
+    const fallbackImg = avatarPicture.querySelector('img');
     const heroSection = document.querySelector('.georg-hero'); // Select the hero section
 
     radios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
-                avatarImage.src = this.value; // Change the avatar image
+                // Update the avatar images
+                const imageSrcMobile = this.getAttribute('data-image-mobile');
+                const imageSrcTablet = this.getAttribute('data-image-tablet');
+                const imageSrcDesktop = this.getAttribute('data-image-desktop');
+
+                sources[0].srcset = imageSrcMobile;
+                sources[1].srcset = imageSrcTablet;
+                sources[2].srcset = imageSrcDesktop;
+
+                // Update the fallback image
+                fallbackImg.src = imageSrcDesktop;
+
+                // Update the background color
                 const selectedBgColor = this.getAttribute('data-bg-color'); // Get the background color
                 heroSection.style.backgroundColor = selectedBgColor; // Update the background color of the hero section
             }
@@ -60,12 +74,24 @@ function setupAvatarChange() {
     });
 
     // Set initial avatar and background based on the first radio button being checked
-    const defaultRadio = radios[0]; // Assuming the first radio should be the default checked
+    const defaultRadio = radios[0]; // Assuming the first radio is the default
     defaultRadio.checked = true;
-    avatarImage.src = defaultRadio.value;
+
+    // Set initial images
+    const imageSrcMobile = defaultRadio.getAttribute('data-image-mobile');
+    const imageSrcTablet = defaultRadio.getAttribute('data-image-tablet');
+    const imageSrcDesktop = defaultRadio.getAttribute('data-image-desktop');
+
+    sources[0].srcset = imageSrcMobile;
+    sources[1].srcset = imageSrcTablet;
+    sources[2].srcset = imageSrcDesktop;
+    fallbackImg.src = imageSrcDesktop;
+
+    // Set default background color
     const defaultBgColor = defaultRadio.getAttribute('data-bg-color'); // Get default background color
     heroSection.style.backgroundColor = defaultBgColor; // Set default background color
 }
+
 
 
 // ---------------------

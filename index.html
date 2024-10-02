@@ -55,22 +55,38 @@
         <!-- <p class="copy mobile">Hi, I am Georg. <span>🧚🏼‍♂️</span><br> Born Human, trained copywriting <span class="highlight bold">Creative&nbsp;Concepter</span>, studied <span class="highlight bold">Interface&nbsp;Designer</span> and <span class="highlight bold">Cooking&nbsp;Photographer</span>.</p> -->
         <!-- <p class="copy tablet">Hi, I am Georg. <span>🧚🏼‍♂️</span><br> Born Human, trained copywriting <span class="highlight bold">Creative&nbsp;Concepter</span>, studied <span class="highlight bold">Interface&nbsp;Designer</span> and <span class="highlight bold">Cooking&nbsp;Photographer</span>.</p> -->
         <!-- <h1 class="tablet">Equip me and see what I can do!</h1> -->
-        <h2 class="tablet">Hi, I am <span class="highlight italic">Georg </span>, <span class="highlight-b italic">Georg </span>, <span class="highlight-g italic">Georg </span> and <span class="highlight-l italic">Georg </span>.<br>Pick a persona and see what I’ve created!<span class="regular"> 🕹️</span></h2>
+        <h2 class="tablet">Hi, I am <span class="highlight italic">Georg </span>, <span class="highlight-b italic">Georg </span>, <span class="highlight-g italic">Georg </span> and <span class="highlight-l italic">Georg </span>.<br>Pick a persona and see what I’ve created!</h2>
 
 
     
         <div class="intro">        
 
-            <img class="avatare" src="./images/image1-1.png" alt="Georg mit Laptop">
-                                         
+            <picture class="avatare">
+                <!-- Image for mobile devices -->
+                <source media="(max-width: 599px)" srcset="./images/image1-1-1-mobile.png">
+                
+                <!-- Image for tablets -->
+                <source media="(min-width: 600px) and (max-width: 949px)" srcset="./images/image1-1-1-tablet.png">
+                
+                <!-- Image for desktop -->
+                <source media="(min-width: 950px)" srcset="./images/image1-1-1-desktop.png">
+                
+                <!-- Fallback image -->
+                <img src="./images/image1-1-desktop.png" alt="Georg mit Laptop">
+            </picture>
+                                                     
             <div>
 
                 <div>
-                    <p class="mobile">Hi, I am <span class="highlight">Georg </span>, <span class="highlight-b">Georg </span>, <span class="highlight-g">Georg </span> and <span class="highlight-l">Georg </span>.<br>Pick a persona and see what I’ve created!<span class="regular">🕹️</span></p>                    
-                    <h1 class="desktop">Hi, I am <span class="highlight italic">Georg</span>, <span class="highlight-b italic">Georg</span>, <span class="highlight-g italic">Georg</span> and <span class="highlight-l italic">Georg</span>.<br> 🕹️<br>Pick a persona and see what I’ve created!<span class="regular"></span></h1>
+                    <p class="mobile">Hi, I am <span class="highlight">Georg </span>, <span class="highlight-b">Georg </span>, <span class="highlight-g">Georg </span> and <span class="highlight-l">Georg </span>.<br>Pick a persona and see what I’ve created!</p>                    
+                    <h1 class="desktop">Hi, I am <span class="highlight italic">Georg</span>, <span class="highlight-b italic">Georg</span>, <span class="highlight-g italic">Georg</span> and <span class="highlight-l italic">Georg</span>.<br><br>Pick a persona and see what I’ve created!</h1>
                     <div class="image-selector">                 
                         <label class="card">
-                            <input type="radio" name="image" value="./images/image1-1.png" data-filter="all" data-bg-color="#fff5f9" checked>
+                            <input type="radio" name="image"
+                            data-image-mobile="./images/image1-1-1-mobile.png"
+                            data-image-tablet="./images/image1-1-1-tablet.png"
+                            data-image-desktop="./images/image1-1-1-desktop.png"
+                            data-filter="all" data-bg-color="#fff5f9" checked>
                             <div class="card-content">
                                 <p class="mobile">💅🏻</p>
                                 <h3 class="tablet regular">💅🏻</h3>
@@ -79,7 +95,12 @@
                             <span class="checkmark"></span>
                         </label>
                         <label class="card blue">
-                            <input type="radio" name="image" value="./images/image2-1.png" data-filter="ud" data-bg-color="#F5FDFF">
+                            <input type="radio" name="image"
+                            data-image-mobile="./images/image2-1-1-mobile.png"
+                            data-image-tablet="./images/image2-1-1-tablet.png"
+                            data-image-desktop="./images/image2-1-1-desktop.png"
+                            data-filter="ud" data-bg-color="#F5FDFF">
+                            <!-- <input type="radio" name="image" value="./images/image2-1-1-desktop.png" data-filter="ud" data-bg-color="#F5FDFF"> -->
                             <div class="card-content">
                                 <p class="mobile">💻</p>
                                 <h3 class="tablet regular">💻</h3>
@@ -88,7 +109,13 @@
                             <span class="checkmark"></span>
                         </label>
                         <label class="card green">
-                            <input type="radio" name="image" value="./images/image3-1-1.png" data-filter="vd" data-bg-color="#F5FFF8">
+                            <input type="radio" name="image"
+                            data-image-mobile="./images/image3-1-1-mobile.png"
+                            data-image-tablet="./images/image3-1-1-tablet.png"
+                            data-image-desktop="./images/image3-1-1-desktop.png"
+                            data-filter="vd" data-bg-color="#F5FFF8">
+
+                            <!-- <input type="radio" name="image" value="./images/image3-1-1-desktop.png" data-filter="vd" data-bg-color="#F5FFF8"> -->
                             
                             <div class="card-content">
                                 <p class="mobile">🎨</p>
@@ -99,7 +126,12 @@
                             <span class="checkmark"></span>
                         </label>
                         <label class="card lila">
-                            <input type="radio" name="image" value="./images/image4-1.png" data-filter="pv" data-bg-color="#FAF5FF">
+                            <input type="radio" name="image"
+                            data-image-mobile="./images/image4-1-1-mobile.png"
+                            data-image-tablet="./images/image4-1-1-tablet.png"
+                            data-image-desktop="./images/image4-1-1-desktop.png"
+                            data-filter="pv" data-bg-color="#FAF5FF">
+                            <!-- <input type="radio" name="image" value="./images/image4-1-1-desktop.png" data-filter="pv" data-bg-color="#FAF5FF"> -->
                             <div class="card-content">
                                 <p class="mobile">📸</p>
                                 <h3 class="tablet regular">📸</h3>
@@ -299,7 +331,7 @@
             <h2 class="tablet underline">Beutel Botanica</h2>
             <h1 class="desktop underline">Beutel Botanica</h1>
         </div>
-        <p class="copy">My father is a gardener who grows rare, old traditional and extraordinary vegetables, fruits and wild herbs for the top gastronomy of Germany. As a gardener you have to work with a vegetable surplus - as an insurance. But instead of ditching these vegetables my father ferments them and generates another product: fermented vegetables.
+        <p class="copy">My father is a gardener who grows rare, old traditional and extraordinary vegetables, fruits and wild herbs for the top gastronomy of Germany. As a gardener you have to work with a vegetable surplus—as an insurance. But instead of ditching these vegetables my father ferments them and generates another product: fermented vegetables.
             <br><br>
             To give his market garden a boost, I’ve decided to help him and gave his fermented products a new look. 
         </p>                                       
@@ -400,12 +432,55 @@
             <p class="copy">A very good friend of mine wanted to open up her first restaurant – but then Covid happened. Nevertheless her concept was amazing: The restaurant was supposed to work along the «From Farm to Table«-philopshopy and offer fresh regional food for everyone – but cooked royally fine. There to say a restaurant for Barons and <span class="italic">Bauern </span>(Farmers/Smallfolk).<br><br>I wanted to illustrate this claim in its logo—and found a beautiful way to do so (in my opinion). I’ve managed to combine two symboles of both worlds in one logo: the garden fork of the farmers and the crown of the royals.<br><br>It’s these multidimensional art works that inspire and excite me most.
             </p>                        
     </div> 
-
-
 </div>
 
+<!-- Fette Fermente -->
+
+<!-- <div class="section left bg-pink filterDiv vd" id="fettefermente"> -->
+
+    <div class="custom-slider" id="small-slider">
+            
+        <div class="slides-wrapper">
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-1.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-3.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-6.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-7.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-8.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/FetteFermente_GeorgBagdenand-9.jpg" alt="Image 1"></div>
+            <div class="custom-slide"><img src="./images/Fette Fermente/Content/DasMenü.jpg" alt="Image 1"></div>
+            
+        </div>
+
+        <div class="custom-pagination">
+            <!-- Left arrow button -->
+            <button class="custom-prev-button">&larr; Back</button>
+        
+            <!-- Pagination dots -->
+            <div class="custom-pagination-dots">
+            </div>
+
+            <!-- Right arrow button -->
+            <button class="custom-next-button">Next &rarr;</button>
+        </div>
+
+    </div>
+
+
+    <div class="content">
+        
+            <div class="title">
+                <p class="caption">Art Design • Concept</p>
+                <h3 class="mobile underline">Bauer und Baron</h3>
+                <h2 class="tablet underline">Bauer und Baron</h2>
+                <h1 class="desktop underline">Bauer und Baron</h1>
+            </div>
+            <p class="copy">A very good friend of mine wanted to open up her first restaurant – but then Covid happened. Nevertheless her concept was amazing: The restaurant was supposed to work along the «From Farm to Table«-philopshopy and offer fresh regional food for everyone – but cooked royally fine. There to say a restaurant for Barons and <span class="italic">Bauern </span>(Farmers/Smallfolk).<br><br>I wanted to illustrate this claim in its logo—and found a beautiful way to do so (in my opinion). I’ve managed to combine two symboles of both worlds in one logo: the garden fork of the farmers and the crown of the royals.<br><br>It’s these multidimensional art works that inspire and excite me most.
+            </p>                        
+    </div> 
+<!-- </div> -->
+
 <!-- OBI. DIY is cheaper  -->
-<div class="section left bg-pink filterDiv vd" id="OBI">
+<div class="section filterDiv vd" id="OBI">
 
 
     <div class="custom-slider">
