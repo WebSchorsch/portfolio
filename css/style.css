@@ -88,7 +88,7 @@ ul li {
 
 footer {
   display: flex;
-  padding: 2.5% 5%;
+  padding: 15% 5% 5% 5%;
   justify-content: flex-end;
 }
 
@@ -647,7 +647,7 @@ opacity: 1;
 }
 
 .top-2 {
-  padding: 100% 50% 10% 5%;
+  padding: 10% 5% 10% 5%;
 }
 
 
@@ -992,7 +992,7 @@ opacity: 1;
     }
 
     footer {
-      padding: 1% 5%;
+      padding: 2.5% 5%;
     }
 
     .top-2 {
