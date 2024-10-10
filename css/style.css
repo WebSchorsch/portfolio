@@ -29,6 +29,10 @@ span,
   font-style: normal;
 }
 
+ul li {
+  margin-bottom: 0.5rem; /* Adjust the value as needed */
+}
+
 /* MENU */
 
 
@@ -355,7 +359,7 @@ gap: 2rem;
 }
 
 #small-slider {
-  max-width: 700px;
+  max-width: 600px;
 }
 
 .slides-wrapper {
@@ -1070,9 +1074,7 @@ p {
 }
 
 
-.italic {
-  font-style: italic;
-}
+
 
 .regular {
   font-style: normal;
@@ -1082,12 +1084,20 @@ p {
   font-weight: 500;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .underline {
   text-decoration: underline;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: .125rem;
   text-decoration-color: var(--highlight-dark);
   /* text-decoration-color: var(--Border-Lighter); */
+}
+
+.underline:hover {
+  color: var(--p-hover)
 }
 
 a {
