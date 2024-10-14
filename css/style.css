@@ -88,8 +88,8 @@ ul li {
 
 footer {
   display: flex;
-  padding: 5% 5% 20% 5%;
-  justify-content: flex-end;
+  padding: 5% 5% 15% 5%;
+  justify-content: center;
 }
 
 
@@ -385,10 +385,11 @@ align-items: center;
 
 .custom-slide img {
   max-width: 100%;
-  
   height: auto;
+  /* max-height */
   display: block;
 }
+
 
 /* Arrows */
 .custom-prev-button,
@@ -783,6 +784,14 @@ opacity: 1;
   align-items: flex-start;
 }
 
+
+footer {
+  display: flex;
+  padding: 5% 5% 5% 5%;
+  justify-content: flex-end;
+}
+
+
 }
 
 
@@ -992,6 +1001,7 @@ opacity: 1;
     }
 
     footer {
+      justify-content: flex-start;
       padding: 2.5% 5%;
     }
 
