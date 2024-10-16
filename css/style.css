@@ -876,7 +876,7 @@ footer {
       flex-direction: row;
       flex-wrap: nowrap;
       padding: 10% 5%;
-      height: 100vh;
+      /* height: 100vh; */
     }
     
    
