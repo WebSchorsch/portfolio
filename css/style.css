@@ -1141,6 +1141,14 @@ p {
   color: var(--p-hover)
 }
 
+
+.underline-edel {
+  text-decoration: underline;
+  text-decoration-thickness: 0.125rem;
+  text-underline-offset: .125rem;
+  text-decoration-color: var(--Greyscale-Text-Caption);
+}
+
 a {
   text-decoration: none;
   color: inherit;
