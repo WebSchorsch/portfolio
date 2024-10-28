@@ -189,7 +189,7 @@ picture > img {
   justify-content: space-between;
   padding: 0.75rem;
   border-radius: var(--V-s-Padding, 0.75rem);
-  border: 1px solid var(--Greyscale-Border-Default, #d9d3d6);
+  border: 1px solid var(--Greyscale-Border-Default, #D9D3D6);
   gap: var(--V-s-Padding, 0.75rem);
   background: var(--Greyscale-Surface-Very-Subtle, #fff);
   box-shadow: 0px 2px 4px 0px rgba(73, 61, 66, 0.16);
@@ -1081,6 +1081,7 @@ p {
 
 .copy {
   font-family: "jaf-cupidus", sans-serif;
+  font-size: 1rem;
   font-weight: 200;
   font-style: normal;
   line-height: 150%; /* 22.4px */
@@ -1093,7 +1094,7 @@ p {
   font-size: 0.85rem;
   font-style: normal;
   font-weight: 400;
-  line-height: normal;
+  line-height: 130%;
   letter-spacing: 0.04rem;
   text-transform: uppercase;
   color: var(--Greyscale-Text-Caption);
@@ -1259,6 +1260,8 @@ a {
     --Greyscale-Surface-Subtle: #fcfcfc;
     --Greyscale-Surface-Disabled: #f9f7f9;
     --Greyscale-Text-Caption: #c0b5b9;
+    --Greyscale-Text-Subtitle: #746168;
+    --Greyscale-Border-Default: #D9D3D6;
    
 /* highlight */
 
@@ -1341,7 +1344,7 @@ a {
 
 .button-primary {
     /* layout */
-    display: inline-flex;
+    display: flex;
     padding: var(--V-xs-padding, 0.5rem) var(--H-s-padding, 0.75rem);
     align-items: center;
     gap: var(--s-spacing, 0.5rem);
@@ -1394,27 +1397,27 @@ a {
 }
 
 .button-teritary {
-    padding: var(--V-xxxs-padding, 0.25rem) var(--H-s-padding, 0.75rem);
-    display: inline-flex;
+    padding: 0.1rem var(--H-xs-padding, 0.5rem);
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 0.5rem;
   
-    background-color: var(--white);
+    /* background-color: var(--white); */
     border-radius: var(--s-radius, 0.25rem);
-    border: 1px solid var(--Greyscale-Border-Darker, #746168);
-    color: var(--g-text);
-    cursor: pointer;
-    box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 2px 4px 0px rgba(73, 61, 66, 0.04);
-    transition: background-color 0.2s ease, color 0.2s ease;
+    border: 1px solid var(--Greyscale-Border-Default, #746168);
+    color: var(--Greyscale-Text-Subtitle);
+    /* cursor: pointer; */
+    /* box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 2px 4px 0px rgba(73, 61, 66, 0.04); */
+    /* transition: background-color 0.2s ease, color 0.2s ease; */
 
   }
   
-  .button-teritary:active {
+  /* .button-teritary:active {
     background-color: var(--Greyscale-Text-Disabled, #9A888F);
     border: 1px solid var(--Greyscale-Border-Darker, #746168);
-  }
+  } */
 
   @media (hover: hover) and (pointer: fine) {
     
@@ -1429,11 +1432,11 @@ a {
       border: 1px solid var(--Surface-Darker, #A22653);
       box-shadow: -2px -2px 8px 0px rgba(116, 97, 104, 0.2) inset, 2px 2px 4px 0px rgba(116, 97, 104, 0.4) inset;
     }
-    
+/*     
     .button-teritary:hover {
       background: var(--Greyscale-Surface-Disabled, #F9F7F9);
       box-shadow: -2px -2px 8px 0px rgba(51, 51, 51, 0.05) inset, 2px 2px 4px 0px rgba(76, 76, 76, 0.15) inset;   
-    }
+    } */
 }
 
 .prev-button, .next-button {
