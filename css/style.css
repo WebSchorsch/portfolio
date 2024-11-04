@@ -895,6 +895,7 @@ footer {
         order: 10;
     }
 
+
     .content {
       max-width: 60ch;
       min-width: 40ch;
@@ -929,7 +930,7 @@ footer {
     }
   
     .project > img {
-      max-width: 900px;
+      max-width: 700px;
       height: auto;
       /* align-self: center; */
     }
@@ -1224,7 +1225,7 @@ a {
   } */
 
 .drop-shadow {
-  border-radius: 0.5vw;
+  border-radius: 1vw;
   border: 0.5px solid var(--g-border-default);
     /* Elevations/S */
     box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 6px 8px 0px rgba(73, 61, 66, 0.1);
