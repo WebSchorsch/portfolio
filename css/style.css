@@ -1213,7 +1213,7 @@ a {
 
 
 .inner-shadow {
-    border: 0.5px solid #d9d3d6;
+    border: 3vw solid #d9d3d6;
     border-radius: var(--Radius-XL, 1.25rem);
     /* Inner Shadows/XS */
     box-shadow: 1px 2px 4px 0px rgba(116, 97, 104, 0.2) inset;
@@ -1225,7 +1225,7 @@ a {
   } */
 
 .drop-shadow {
-  border-radius: 1vw;
+  border-radius: 3vw;
   border: 0.5px solid var(--g-border-default);
     /* Elevations/S */
     box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 6px 8px 0px rgba(73, 61, 66, 0.1);
