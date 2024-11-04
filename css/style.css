@@ -454,6 +454,12 @@ opacity: 1;
   height: auto;
 }
 
+
+/* img {
+  width: 100%;
+  height: auto;
+} */
+
 .project {
   background-color: var(--white);
   display: flex;
