@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.georg-hero');
     const sliders = document.querySelectorAll('.custom-slider');
     const cards = document.querySelectorAll('.card');
-    
+
     // Initialize all features
     setupAvatarChange();
     setupFilter();
@@ -15,6 +15,72 @@ document.addEventListener('DOMContentLoaded', function() {
     setupScrollForNavButtons();
     setupNavigationButtons();
     sliders.forEach(slider => setupCustomSlider(slider));
+
+    // ---------------------
+    // Reset All State on Page Load
+    // ---------------------
+    function resetToDefaultState() {
+        const defaultRadio = document.querySelector('.image-selector input[type="radio"]:checked');
+
+        // Reset all cards' checked state and apply only the default checked state
+        cards.forEach(card => card.classList.remove('checked'));
+        if (defaultRadio) {
+            defaultRadio.checked = true;
+            defaultRadio.closest('.card').classList.add('checked');
+            applySettingsFromRadio(defaultRadio); // Apply default color settings
+        }
+    }
+
+    // Call resetToDefaultState to ensure initial state
+    resetToDefaultState();
+
+    // ---------------------
+    // Avatar Change
+    // ---------------------
+    function setupAvatarChange() {
+        const radios = document.querySelectorAll('.image-selector input[type="radio"]');
+        const avatarPicture = document.querySelector('.avatare');
+        const sources = avatarPicture.querySelectorAll('source');
+        const fallbackImg = avatarPicture.querySelector('img');
+        const rootStyle = document.documentElement.style;
+
+        function applySettingsFromRadio(radio) {
+            // Update avatar images
+            sources[0].srcset = radio.getAttribute('data-image-mobile');
+            sources[1].srcset = radio.getAttribute('data-image-tablet');
+            sources[2].srcset = radio.getAttribute('data-image-desktop');
+            fallbackImg.src = radio.getAttribute('data-image-desktop');
+
+            // Update color variables
+            const primaryColor = radio.getAttribute('data-primary-color');
+            const surfaceDarkerColor = radio.getAttribute('data-surface-darker');
+            const surfaceLighterColor = radio.getAttribute('data-surface-lighter');
+            const innerShadowColor = radio.getAttribute('data-inner-shadow');
+            const selectedBgColor = radio.getAttribute('data-bg-color');
+
+            rootStyle.setProperty('--primary-default', primaryColor);
+            rootStyle.setProperty('--surface-darker', surfaceDarkerColor);
+            rootStyle.setProperty('--surface-lighter', surfaceLighterColor);
+            rootStyle.setProperty('--inner-shadow-default', innerShadowColor);
+
+            // Apply background color for hero and other sections
+            heroSection.style.backgroundColor = selectedBgColor;
+            rootStyle.setProperty('--section-bg-color', selectedBgColor);
+        }
+
+        // Apply default color settings on page load
+        const defaultRadio = document.querySelector('.image-selector input[type="radio"]:checked');
+        if (defaultRadio) applySettingsFromRadio(defaultRadio);
+
+        radios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    applySettingsFromRadio(this);
+                    resetToDefaultState(); // Reset all cards
+                }
+            });
+        });
+    }
 
     // ---------------------
     // Cards Checked State
@@ -30,49 +96,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-
-    // ---------------------
-    // Avatar Change
-    // ---------------------
-    function setupAvatarChange() {
-    const radios = document.querySelectorAll('.image-selector input[type="radio"]');
-    const avatarPicture = document.querySelector('.avatare');
-    const sources = avatarPicture.querySelectorAll('source');
-    const fallbackImg = avatarPicture.querySelector('img');
-    const rootStyle = document.documentElement.style;
-
-    radios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            if (this.checked) {
-                // Update avatar images
-                sources[0].srcset = this.getAttribute('data-image-mobile');
-                sources[1].srcset = this.getAttribute('data-image-tablet');
-                sources[2].srcset = this.getAttribute('data-image-desktop');
-                fallbackImg.src = this.getAttribute('data-image-desktop');
-
-                // Update background color
-                const selectedBgColor = this.getAttribute('data-bg-color');
-                heroSection.style.backgroundColor = selectedBgColor;
-
-                // Update primary color
-                const primaryColor = this.getAttribute('data-primary-color');
-                rootStyle.setProperty('--primary-default', primaryColor);
-
-                // Update surface-darker color
-                const surfaceDarkerColor = this.getAttribute('data-surface-darker');
-                console.log(`Changing surface darker color to: ${surfaceDarkerColor}`);
-                rootStyle.setProperty('--surface-darker', surfaceDarkerColor);
-            }
-        });
-    });
-
-    // Set initial state
-    const defaultRadio = radios[0];
-    if (defaultRadio) defaultRadio.checked = true;
-    radios[0].dispatchEvent(new Event('change'));
-}
-
-    
 
     // ---------------------
     // Filter Function with Event Dispatch

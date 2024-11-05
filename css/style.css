@@ -321,7 +321,7 @@ picture > img {
 /* >>>>> SECTIONS <<<<< */
 
 .section {
-background-color: var(--p-supersubtle);
+background-color: var(--white);
 display: flex;
 flex-direction: column;
 flex-wrap: wrap;
@@ -417,7 +417,7 @@ margin-left: 0rem;
 
 .custom-prev-button:hover,
 .custom-next-button:hover {
-  color: var(--p-hover);
+  color: var(--surface-darker);
 }
 
 /* Pagination */
@@ -435,14 +435,14 @@ position: relative;
 height: 0.5rem;
 width: 0.5rem;
 margin: 0 0.125rem;
-background-color: var(--Border-Lighter);
+background-color: var(--surface-lighter);
 border-radius: 50%;
 display: inline-block;
 cursor: pointer;
 }
 
 .custom-pagination-dot.active {
-background-color: var(--Border-Default);
+background-color: var(--primary-default);
 opacity: 1;
 }
 
@@ -1140,12 +1140,12 @@ p {
   text-decoration: underline;
   text-decoration-thickness: 0.125rem;
   text-underline-offset: .125rem;
-  text-decoration-color: var(--highlight-dark);
-  /* text-decoration-color: var(--Border-Lighter); */
+  text-decoration-color: var(--surface-lighter);
+  /* text-decoration-color: var(--surface-lighter); */
 }
 
 .underline:hover {
-  color: var(--p-hover)
+  color: var(--surface-darker)
 }
 
 
@@ -1189,7 +1189,10 @@ a {
   /* box-shadow: var(--highlight-l) calc(-1 * var(--s-spacing)) 0, var(--highlight-l) var(--s-spacing) 0; */
 }
 
-
+.bg-section {
+  background-color: var(--section-bg-color);
+  transition: background-color 0.3s ease-in-out; /* Smooth transition for background */
+}
 
 .bg-pink {
   background-color: var(--p-verysubtle, #fff5f9);
@@ -1270,9 +1273,12 @@ a {
   /* Neu - sukessive anpassen bitte*/
   --primary-default: #c7366b;
   --surface-darker: #a22653;
-  --Border-Default: #C7366B;
-  --Border-Lighter: #DF82A5;
+  --inner-shadow-default: rgba(120, 29, 63, 0.8);
+  /* --Border-Default: #C7366B; */
+  --surface-lighter: #DF82A5;
   --Surface-Subtle: #FFEDF4;
+  --section-bg-color: #fff5f9;
+
   
    
 
@@ -1310,7 +1316,8 @@ a {
 /* blue */
 --primary-blue: #1C6D8C;
 --surface-darker-blue: #13506A;
-
+--inner-shadow-blue: rgba(61, 70, 73, 0.8);
+--surface-lighter-blue: #82C3DF;
 --blue-default: #289DCA;
 --blue-hover-bg:  #FCFEFF;
 --blue-hover-stroke: #76C4E0;
@@ -1318,8 +1325,11 @@ a {
 --blue-select-bg: #EDFBFF;
 
 /* green */
---primary-gruen: #145723;
---surface-darker-green: #0E3E1A;
+--primary-gruen: #1A732E;
+--surface-darker-green: #145724;
+--inner-shadow-green: rgba(61, 73, 64, 0.8);
+--surface-lighter-green: #82DF99;
+
 --green-default: #145723;
 --green-hover-bg:  #FCFFFD;
 --green-hover-stroke: #1D9638;
@@ -1329,6 +1339,9 @@ a {
 /* lila  */
 --primary-lila: #7B32CC;
 --surface-darker-lila: #5B24A3;
+--inner-shadow-lila: rgba(67, 61, 73, 0.8);
+--surface-lighter-lila: #AA82DF;
+
 --lila-default: #9A3FFF;
 --lila-hover-bg:  #FEFCFF;
 --lila-hover-stroke: #C084FF;
@@ -1375,24 +1388,20 @@ a {
 /* Buttons  */
 
 .button-primary {
-    /* layout */
-    display: flex;
-    padding: var(--V-xs-padding, 0.5rem) var(--H-s-padding, 0.75rem);
-    align-items: center;
-    gap: var(--s-spacing, 0.5rem);
-    justify-content: space-between;
-    height: 3rem;
+  display: flex;
+  padding: var(--V-xs-padding, 0.5rem) var(--H-s-padding, 0.75rem);
+  align-items: center;
+  justify-content: space-between;
+  height: 3rem;
+  color: var(--white);
+  border-radius: var(--Radius, 0.5rem);
+  border: 1px solid var(--surface-darker);
+  background: var(--primary-default);
 
-    /* style */
-    border-radius: var(--Radius, 0.5rem);
-    color: var(--white);
-    border: 1px solid var(--surface-darker, #A22653);
-    background: var(--primary-default, #C7366B);
-
-    /* Inner Shadows/Pop */
-    box-shadow: -2px -2px 4px 0px rgba(116, 97, 104, 0.30) inset;
-
+  /* Inner shadow effect */
+  box-shadow: -2px -2px 4px 0px var(--inner-shadow-default) inset;
 }
+
 
 .button-primary:active {
   color: var(--Surface-Subtle, #FFEDF4);
@@ -1454,9 +1463,11 @@ a {
   @media (hover: hover) and (pointer: fine) {
     
     .button-primary:hover {
-      color: var(--Surface-Subtle, #FFEDF4);
+      /* color: var(--Surface-Subtle, #FFEDF4); */
       background: var(--surface-darker, #A22653);
-      box-shadow: -2px -2px 8px 0px rgba(120, 29, 63, 0.80) inset, 2px 2px 4px 0px #781D3F inset;
+      
+      box-shadow: -2px -2px 8px 0px var(--inner-shadow-default) inset, 2px 2px 4px 0px var(--inner-shadow-default) inset;
+      /* alt, aber feiner: box-shadow: -2px -2px 8px 0px var(--inner-shadow-default) inset, 2px 2px 4px 0px #781D3F inset; */
   }
     
     .button-secondary:hover {
