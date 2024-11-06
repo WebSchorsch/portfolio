@@ -1045,7 +1045,7 @@ footer {
   color: var(--p-text, #392040);
 }
 
-.title {
+.title-text {
   font-family:  "Crimson Pro", serif;
   font-size: 3rem;
   /* font-size: 3.0625rem; */
