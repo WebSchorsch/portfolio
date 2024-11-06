@@ -308,11 +308,21 @@ picture > img {
 
 .welcome-content-bottom {
   display: flex;
-  justify-content: center;
+  /* flex-direction: column; */
+  justify-content: space-between;
   align-items: center;
   gap: var(--H-s-padding);
   align-self: center;
+  /* text-align: right; */
 }
+
+.welcome-content-bottom > div {
+  display: flex;
+  width: 80px;
+  justify-content: flex-end;
+  text-align: right;
+}
+
 
 #project-counter {
   text-align: right;
@@ -1022,6 +1032,30 @@ footer {
 
 
 /* >>>>> VARIABLES <<<<< */
+
+.mega {
+  font-family:  "Crimson Pro", serif;
+  font-size: 3.4rem;
+  /* font-size: 3.0625rem; */
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2; /* 58.8px */
+  /* letter-spacing: 0.05rem; */
+
+  color: var(--p-text, #392040);
+}
+
+.title {
+  font-family:  "Crimson Pro", serif;
+  font-size: 3rem;
+  /* font-size: 3.0625rem; */
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1.2; /* 58.8px */
+  /* letter-spacing: 0.05rem; */
+
+  color: var(--p-text, #392040);
+}
 
 h1 {
   font-family:  "Crimson Pro", serif;

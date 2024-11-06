@@ -7,37 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const heroSection = document.querySelector('.georg-hero');
     const sliders = document.querySelectorAll('.custom-slider');
     const cards = document.querySelectorAll('.card');
-    const images = document.querySelectorAll('* img'); // Adjust selector to target your images
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeLightbox = document.querySelector('.close-lightbox');
-
-    // Open lightbox on image click
-    images.forEach(img => {
-        img.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = img.src; // Use clicked image as lightbox source
-        });
-    });
-
-    // Close lightbox when clicking the close button
-    closeLightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
-
-    // Close lightbox when pressing Esc key
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            lightbox.style.display = 'none';
-        }
-    });
-
-    // Close lightbox when clicking outside the image
-    lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
-            lightbox.style.display = 'none';
-        }
-    });
 
     // Initialize all features
     setupAvatarChange();
@@ -233,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // ---------------------
-    // Slider Setup with Fullscreen Feature
+    // Slider Setup
     // ---------------------
     function setupCustomSlider(sliderContainer) {
         const slidesWrapper = sliderContainer.querySelector('.slides-wrapper');
@@ -316,47 +285,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         setActiveSlide(0); // Initialize
-
-        // Fullscreen toggle for sliders
-        sliderContainer.addEventListener('dblclick', function() {
-            openFullscreenSlider(sliderContainer);
-        });
-    }
-
-    // Fullscreen slider functionality
-    function openFullscreenSlider(slider) {
-        // Clone the slider to create a fullscreen version
-        const fullscreenOverlay = document.createElement('div');
-        fullscreenOverlay.classList.add('fullscreen-overlay');
-        fullscreenOverlay.style.position = 'fixed';
-        fullscreenOverlay.style.top = 0;
-        fullscreenOverlay.style.left = 0;
-        fullscreenOverlay.style.width = '100vw';
-        fullscreenOverlay.style.height = '100vh';
-        fullscreenOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
-        fullscreenOverlay.style.zIndex = 1000;
-        fullscreenOverlay.style.display = 'flex';
-        fullscreenOverlay.style.alignItems = 'center';
-        fullscreenOverlay.style.justifyContent = 'center';
-
-        // Clone the original slider into the overlay
-        const clonedSlider = slider.cloneNode(true);
-        clonedSlider.style.width = '90%';
-        clonedSlider.style.height = 'auto';
-        fullscreenOverlay.appendChild(clonedSlider);
-
-        // Close fullscreen on overlay click (outside slider)
-        fullscreenOverlay.addEventListener('click', function (e) {
-            if (e.target === fullscreenOverlay) {
-                document.body.removeChild(fullscreenOverlay);
-            }
-        });
-
-        // Append overlay with the cloned slider to body
-        document.body.appendChild(fullscreenOverlay);
-
-        // Initialize slider functionality within fullscreen overlay
-        setupCustomSlider(clonedSlider); // Call your slider setup function on the cloned slider
     }
 
     // ---------------------
