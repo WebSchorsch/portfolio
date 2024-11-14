@@ -8,13 +8,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const sliders = document.querySelectorAll('.custom-slider');
     const cards = document.querySelectorAll('.card');
 
-    // Initialize all features
-    setupAvatarChange();
-    setupFilter();
-    setupScrollButton();
+    // Log the number of sliders found on the page
+    console.log('Sliders found:', sliders.length);
+
+    // Initialize features
+    if (document.querySelector('.image-selector')) setupAvatarChange();
+    if (document.getElementById('project-counter')) setupFilter();
+    if (document.getElementById('scroll-button')) setupScrollButton();
     setupScrollForNavButtons();
     setupNavigationButtons();
-    sliders.forEach(slider => setupCustomSlider(slider));
+    sliders.forEach(slider => {
+        console.log('Initializing slider:', slider); // Log each slider being initialized
+        setupCustomSlider(slider);
+    });
 
     // ---------------------
     // Reset All State on Page Load
@@ -40,6 +46,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupAvatarChange() {
         const radios = document.querySelectorAll('.image-selector input[type="radio"]');
         const avatarPicture = document.querySelector('.avatare');
+        if (!avatarPicture) return; // Exit function if avatarPicture is not found
+
         const sources = avatarPicture.querySelectorAll('source');
         const fallbackImg = avatarPicture.querySelector('img');
         const rootStyle = document.documentElement.style;
@@ -153,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function() {
         nextButtonNav.style.display = 'none';
 
         window.addEventListener('scroll', () => {
-            const isHeroVisible = heroSection.getBoundingClientRect().bottom > 0;
+            const isHeroVisible = heroSection && heroSection.getBoundingClientRect().bottom > 0;
             prevButtonNav.style.display = nextButtonNav.style.display = isHeroVisible ? 'none' : 'inline-block';
         });
     }
