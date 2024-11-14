@@ -8,19 +8,19 @@ document.addEventListener('DOMContentLoaded', function() {
     const sliders = document.querySelectorAll('.custom-slider');
     const cards = document.querySelectorAll('.card');
 
-    // Log the number of sliders found on the page
-    console.log('Sliders found:', sliders.length);
+    // Initialize features only if elements exist
+    if (cards.length > 0) {
+        setupAvatarChange();
+        setupFilter();
+        setupScrollButton();
+        setupScrollForNavButtons();
+        setupNavigationButtons();
+        resetToDefaultState(); // Ensure initial state
+    }
 
-    // Initialize features
-    if (document.querySelector('.image-selector')) setupAvatarChange();
-    if (document.getElementById('project-counter')) setupFilter();
-    if (document.getElementById('scroll-button')) setupScrollButton();
-    setupScrollForNavButtons();
-    setupNavigationButtons();
-    sliders.forEach(slider => {
-        console.log('Initializing slider:', slider); // Log each slider being initialized
-        setupCustomSlider(slider);
-    });
+    if (sliders.length > 0) {
+        sliders.forEach(slider => setupCustomSlider(slider));
+    }
 
     // ---------------------
     // Reset All State on Page Load
@@ -37,27 +37,29 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Call resetToDefaultState to ensure initial state
-    resetToDefaultState();
-
     // ---------------------
     // Avatar Change
     // ---------------------
     function setupAvatarChange() {
         const radios = document.querySelectorAll('.image-selector input[type="radio"]');
         const avatarPicture = document.querySelector('.avatare');
-        if (!avatarPicture) return; // Exit function if avatarPicture is not found
+        const rootStyle = document.documentElement.style;
+
+        if (!avatarPicture) return; // Exit if avatarPicture doesn't exist
 
         const sources = avatarPicture.querySelectorAll('source');
         const fallbackImg = avatarPicture.querySelector('img');
-        const rootStyle = document.documentElement.style;
 
         function applySettingsFromRadio(radio) {
             // Update avatar images
-            sources[0].srcset = radio.getAttribute('data-image-mobile');
-            sources[1].srcset = radio.getAttribute('data-image-tablet');
-            sources[2].srcset = radio.getAttribute('data-image-desktop');
-            fallbackImg.src = radio.getAttribute('data-image-desktop');
+            if (sources.length >= 3) {
+                sources[0].srcset = radio.getAttribute('data-image-mobile');
+                sources[1].srcset = radio.getAttribute('data-image-tablet');
+                sources[2].srcset = radio.getAttribute('data-image-desktop');
+            }
+            if (fallbackImg) {
+                fallbackImg.src = radio.getAttribute('data-image-desktop');
+            }
 
             // Update color variables
             const primaryColor = radio.getAttribute('data-primary-color');
@@ -72,7 +74,9 @@ document.addEventListener('DOMContentLoaded', function() {
             rootStyle.setProperty('--inner-shadow-default', innerShadowColor);
 
             // Apply background color for hero and other sections
-            heroSection.style.backgroundColor = selectedBgColor;
+            if (heroSection) {
+                heroSection.style.backgroundColor = selectedBgColor;
+            }
             rootStyle.setProperty('--section-bg-color', selectedBgColor);
         }
 
@@ -93,17 +97,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ---------------------
     // Cards Checked State
     // ---------------------
-    cards.forEach(card => {
-        const radioInput = card.querySelector('input[type="radio"]');
-        if (radioInput.checked) card.classList.add('checked');
+    if (cards.length > 0) {
+        cards.forEach(card => {
+            const radioInput = card.querySelector('input[type="radio"]');
+            if (radioInput.checked) card.classList.add('checked');
 
-        radioInput.addEventListener('change', function() {
-            if (radioInput.checked) {
-                cards.forEach(card => card.classList.remove('checked'));
-                card.classList.add('checked');
-            }
+            radioInput.addEventListener('change', function() {
+                if (radioInput.checked) {
+                    cards.forEach(card => card.classList.remove('checked'));
+                    card.classList.add('checked');
+                }
+            });
         });
-    });
+    }
 
     // ---------------------
     // Filter Function with Event Dispatch
@@ -112,6 +118,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const filterControls = document.querySelectorAll('.image-selector input[type="radio"]');
         const filterableSections = document.querySelectorAll('.filterDiv');
         const projectCounter = document.getElementById('project-counter');
+
+        if (filterControls.length === 0 || filterableSections.length === 0) return;
 
         filterControls.forEach(control => {
             control.addEventListener('change', function() {
@@ -128,7 +136,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 section.classList.toggle('hidden', !isMatch);
                 if (isMatch) visibleCount++;
             });
-            projectCounter.textContent = visibleCount;
+            if (projectCounter) {
+                projectCounter.textContent = visibleCount;
+            }
             document.dispatchEvent(new Event('filterChanged')); // Reinitialize navigation
         }
 
@@ -141,6 +151,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function setupScrollButton() {
         const scrollButton = document.getElementById('scroll-button');
         const filterableSections = document.querySelectorAll('.filterDiv');
+
+        if (!scrollButton || filterableSections.length === 0) return;
 
         scrollButton.addEventListener('click', function(event) {
             event.preventDefault();
@@ -157,11 +169,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation Button Visibility
     // ---------------------
     function setupScrollForNavButtons() {
+        if (!prevButtonNav || !nextButtonNav || !heroSection) return;
+
         prevButtonNav.style.display = 'none';
         nextButtonNav.style.display = 'none';
 
         window.addEventListener('scroll', () => {
-            const isHeroVisible = heroSection && heroSection.getBoundingClientRect().bottom > 0;
+            const isHeroVisible = heroSection.getBoundingClientRect().bottom > 0;
             prevButtonNav.style.display = nextButtonNav.style.display = isHeroVisible ? 'none' : 'inline-block';
         });
     }
@@ -170,16 +184,21 @@ document.addEventListener('DOMContentLoaded', function() {
     // Navigation Functions
     // ---------------------
     function setupNavigationButtons() {
+        if (!prevButtonNav || !nextButtonNav) return;
+
         function updateSections() {
             if (observer) observer.disconnect();
-            sections = [heroSection, ...document.querySelectorAll('.filterDiv:not(.hidden)')];
+            sections = [heroSection, ...document.querySelectorAll('.filterDiv:not(.hidden)')].filter(Boolean);
+            observer = new IntersectionObserver(intersectionCallback, { threshold: 0.6 });
             sections.forEach(section => observer.observe(section));
         }
 
         function updateNavigationButtons() {
             prevButtonNav.style.display = currentIndex <= 0 ? 'none' : 'inline-block';
             const nextButtonText = nextButtonNav.querySelector('.button-text');
-            nextButtonText.textContent = currentIndex >= sections.length - 1 ? 'Back to the top' : 'Next';
+            if (nextButtonText) {
+                nextButtonText.textContent = currentIndex >= sections.length - 1 ? 'Back to the top' : 'Next';
+            }
         }
 
         function intersectionCallback(entries) {
@@ -191,7 +210,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
 
-        observer = new IntersectionObserver(intersectionCallback, { threshold: 0.6 });
         updateSections();
 
         nextButtonNav.addEventListener('click', function(event) {
@@ -214,17 +232,19 @@ document.addEventListener('DOMContentLoaded', function() {
     // ---------------------
     function setupCustomSlider(sliderContainer) {
         const slidesWrapper = sliderContainer.querySelector('.slides-wrapper');
-        const slides = slidesWrapper.querySelectorAll('.custom-slide');
+        const slides = slidesWrapper ? slidesWrapper.querySelectorAll('.custom-slide') : [];
         const prevButton = sliderContainer.querySelector('.custom-prev-button');
         const nextButton = sliderContainer.querySelector('.custom-next-button');
         const dotsContainer = sliderContainer.querySelector('.custom-pagination-dots');
+
+        if (!slidesWrapper || slides.length === 0 || !prevButton || !nextButton || !dotsContainer) return;
 
         let currentSlide = 0;
         let isDragging = false;
         let startPos = 0;
         let currentTranslate = 0;
         let prevTranslate = 0;
-        
+
         slidesWrapper.style.transition = 'transform 0.3s ease-in-out';
 
         // Pagination dots
