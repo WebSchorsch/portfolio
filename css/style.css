@@ -891,14 +891,14 @@ footer {
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      padding: 10% 5%;
+      padding: 5% 5%;
       height: 100vh;
     }
     
    
     .thumbnail {
         max-width: 100%;
-        /* max-width: 700px; */
+        max-height: 100%;
         height: auto;
         display: block;
     }
@@ -1308,7 +1308,6 @@ a {
   --primary-default: #c7366b;
   --surface-darker: #a22653;
   --inner-shadow-default: rgba(120, 29, 63, 0.8);
-  
   /* --Border-Default: #C7366B; */
   --surface-lighter: #DF82A5;
   --Surface-Subtle: #FFEDF4;
