@@ -17,45 +17,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Functions Definitions
     // ---------------------
 
-    // Apply settings from the selected radio input
-    function applySettingsFromRadio(radio) {
-        const avatarPicture = document.querySelector('.avatare');
-        const rootStyle = document.documentElement.style;
-
-        if (!avatarPicture) return; // Exit if avatarPicture doesn't exist
-
-        const sources = avatarPicture.querySelectorAll('source');
-        const fallbackImg = avatarPicture.querySelector('img');
-
-        // Update avatar images
-        if (sources.length >= 3) {
-            sources[0].srcset = radio.getAttribute('data-image-mobile');
-            sources[1].srcset = radio.getAttribute('data-image-tablet');
-            sources[2].srcset = radio.getAttribute('data-image-desktop');
-        }
-        if (fallbackImg) {
-            fallbackImg.src = radio.getAttribute('data-image-desktop');
-        }
-
-        // Update color variables
-        const primaryColor = radio.getAttribute('data-primary-color');
-        const surfaceDarkerColor = radio.getAttribute('data-surface-darker');
-        const surfaceLighterColor = radio.getAttribute('data-surface-lighter');
-        const innerShadowColor = radio.getAttribute('data-inner-shadow');
-        const selectedBgColor = radio.getAttribute('data-bg-color');
-
-        if (primaryColor) rootStyle.setProperty('--primary-default', primaryColor);
-        if (surfaceDarkerColor) rootStyle.setProperty('--surface-darker', surfaceDarkerColor);
-        if (surfaceLighterColor) rootStyle.setProperty('--surface-lighter', surfaceLighterColor);
-        if (innerShadowColor) rootStyle.setProperty('--inner-shadow-default', innerShadowColor);
-
-        // Apply background color for hero and other sections
-        if (heroSection && selectedBgColor) {
-            heroSection.style.backgroundColor = selectedBgColor;
-        }
-        if (selectedBgColor) rootStyle.setProperty('--section-bg-color', selectedBgColor);
-    }
-
     // Reset All State on Page Load
     function resetToDefaultState() {
         const defaultRadio = document.querySelector('.image-selector input[type="radio"]:checked');
@@ -75,8 +36,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Avatar Change
     function setupAvatarChange() {
         const radios = document.querySelectorAll('.image-selector input[type="radio"]');
+        const avatarPicture = document.querySelector('.avatare');
+        const rootStyle = document.documentElement.style;
 
-        if (radios.length === 0) return; // Exit if no radios exist
+        if (!avatarPicture) return; // Exit if avatarPicture doesn't exist
+
+        const sources = avatarPicture.querySelectorAll('source');
+        const fallbackImg = avatarPicture.querySelector('img');
+
+        function applySettingsFromRadio(radio) {
+            // Update avatar images
+            if (sources.length >= 3) {
+                sources[0].srcset = radio.getAttribute('data-image-mobile');
+                sources[1].srcset = radio.getAttribute('data-image-tablet');
+                sources[2].srcset = radio.getAttribute('data-image-desktop');
+            }
+            if (fallbackImg) {
+                fallbackImg.src = radio.getAttribute('data-image-desktop');
+            }
+
+            // Update color variables
+            const primaryColor = radio.getAttribute('data-primary-color');
+            const surfaceDarkerColor = radio.getAttribute('data-surface-darker');
+            const surfaceLighterColor = radio.getAttribute('data-surface-lighter');
+            const innerShadowColor = radio.getAttribute('data-inner-shadow');
+            const selectedBgColor = radio.getAttribute('data-bg-color');
+
+            if (primaryColor) rootStyle.setProperty('--primary-default', primaryColor);
+            if (surfaceDarkerColor) rootStyle.setProperty('--surface-darker', surfaceDarkerColor);
+            if (surfaceLighterColor) rootStyle.setProperty('--surface-lighter', surfaceLighterColor);
+            if (innerShadowColor) rootStyle.setProperty('--inner-shadow-default', innerShadowColor);
+
+            // Apply background color for hero and other sections
+            if (heroSection && selectedBgColor) {
+                heroSection.style.backgroundColor = selectedBgColor;
+            }
+            if (selectedBgColor) rootStyle.setProperty('--section-bg-color', selectedBgColor);
+        }
+
+        // Apply default color settings on page load
+        const defaultRadio = document.querySelector('.image-selector input[type="radio"]:checked');
+        if (defaultRadio) applySettingsFromRadio(defaultRadio);
 
         radios.forEach(radio => {
             radio.addEventListener('change', function() {
