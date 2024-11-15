@@ -892,13 +892,13 @@ footer {
       flex-direction: row;
       flex-wrap: nowrap;
       padding: 10% 5%;
-      /* height: 100vh; */
+      height: 100vh;
     }
     
    
     .thumbnail {
-        width: 100%;
-        max-width: 700px;
+        max-width: 100%;
+        /* max-width: 700px; */
         height: auto;
         display: block;
     }
@@ -946,7 +946,7 @@ footer {
     }
   
     .project > img {
-      max-width: 700px;
+      max-width: 100%;
       height: auto;
       /* align-self: center; */
     }
