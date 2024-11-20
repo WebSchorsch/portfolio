@@ -535,7 +535,8 @@ opacity: 1;
 .fullwidth-height {
   max-height: 100%;
   max-width: 100%;
-  object-fit: cover; 
+  object-fit: cover;
+
 }
 
 /* Ensure the container maintains a 16:9 aspect ratio */
