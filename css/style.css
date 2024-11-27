@@ -380,7 +380,7 @@ gap: 2rem;
 display: flex;
 transition: transform 0.2s ease-in-out; /* Increase duration for a smoother effect */
 will-change: transform;
-margin: 1.5rem;
+margin: .5rem;
 gap: 4rem;
 }
 
@@ -1294,7 +1294,8 @@ a {
     border-radius: .75rem;
     border: 0.5px solid var(--g-border-default);
       /* Elevations/S */
-      box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 6px 8px 0px rgba(73, 61, 66, 0.1);
+      box-shadow: 0px 16px 16px -4px rgba(73, 61, 66, 0.10), 0px 6px 8px 0px rgba(73, 61, 66, 0.1);
+      /* box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 6px 8px 0px rgba(73, 61, 66, 0.1); */
       /* box-shadow: 0px 16px 32px -4px rgba(73, 61, 66, 0.10), 0px 2px 4px 0px rgba(73, 61, 66, 0.04); */
     }
 
